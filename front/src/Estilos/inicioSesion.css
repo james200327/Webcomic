@@ -1,0 +1,52 @@
+
+
+.contendor_principal {
+    background-color: #fff; /* Fondo blanco para el contenedor */
+    padding: 30px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    width: 90%; /* Ancho fijo del contenedor */
+    
+    
+}
+
+h1 {
+    font-size: 50px; /* Tamaño de fuente del título */
+    margin-bottom: 10%; /* Espaciado inferior */
+    text-align: center; /* Centra el texto */
+    color: #333; /* Color del texto */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en una columna */
+}
+
+.contendor_usuario, .contendor_contrasenia {
+    margin-bottom: 15px; /* Espaciado inferior entre los campos */
+}
+
+label {
+    font-weight: bold; /* Texto en negrita para las etiquetas */
+    color: #555; /* Color del texto de las etiquetas */
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye el padding y el border en el tamaño total */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+button {
+    padding: 10px; /* Espaciado interno del botón */
+    background-color:orange; /* Color de fondo del botón */
+    color: black; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+}
+
