@@ -1,0 +1,61 @@
+
+
+.contendor_principal {
+    /* Fondo blanco para el contenedor */
+    padding: 3%;
+    width: 35%;
+    
+    max-width: 100%;
+    border-radius: 10px; /* Bordes redondeados */
+   
+     /* Ancho fijo del contenedor */
+     border: 2px solid black;
+    margin: auto;
+    margin-top: 10%;
+    
+   
+       /* Centrar contenido verticalmente */
+              /* Centrar el contenedor mismo en la página */
+    
+}
+
+h1 {
+    font-size: 3vw; /* Tamaño de fuente del título */
+    margin-bottom: 10%; /* Espaciado inferior */
+    text-align: center; /* Centra el texto */
+    color: #333; /* Color del texto */
+}
+
+
+label{
+    font-size: 1.3vw;
+}
+
+
+
+
+input[type="text"], input[type="password"] {
+    
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye el padding y el border en el tamaño total */
+    font-size: 1vw; /* Tamaño de fuente */margin-bottom: 5%;
+   
+}
+
+button {
+    padding: 10px; /* Espaciado interno del botón */
+    background-color:orange; /* Color de fondo del botón */
+    color: black; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    width: 100%;
+   
+    
+}
+
