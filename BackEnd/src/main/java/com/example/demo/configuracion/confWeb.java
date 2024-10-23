@@ -20,6 +20,7 @@ public class confWeb{
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+        .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/usuarios/registro", "/api/usuarios/login").permitAll() // Permitir acceso a registro y login
                 .anyRequest().authenticated() // Otras rutas requieren autenticación

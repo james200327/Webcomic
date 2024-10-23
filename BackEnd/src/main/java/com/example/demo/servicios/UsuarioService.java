@@ -8,6 +8,8 @@ import com.example.demo.configuracion.exceptionPers;
 import com.example.demo.entidades.Usuario;
 import com.example.demo.repositorios.UsuarioRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UsuarioService {
 
@@ -23,12 +25,12 @@ public class UsuarioService {
 
 		if (usuarioRepository.existsByUsername(usuario.getUsername())) {
 
-			throw new exceptionPers("El nombre ya esta en uso");
+			throw new RuntimeException("El nombre ya esta en uso");
 		}
 
 		if (usuarioRepository.existsByEmail(usuario.getEmail())) {
 
-			throw new exceptionPers("El correo ya esta en uso");
+			throw new RuntimeException("El correo ya esta en uso");
 		}
 
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
@@ -41,7 +43,7 @@ public class UsuarioService {
 		if(usuarioRepository.existsByUsername(nombre)) {
 			return usuarioRepository.findByUsername(nombre);
 		}else {
-			throw new exceptionPers("Usuario no encontrado");
+			throw new RuntimeException("Usuario no encontrado");
 		}	
                 
 

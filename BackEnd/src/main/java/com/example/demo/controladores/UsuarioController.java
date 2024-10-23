@@ -35,13 +35,9 @@ public class UsuarioController {
 	
 	@PostMapping("/registro")
 	public ResponseEntity<String> registroUsuario(@RequestBody Usuario usuario) {
-		 try {
-		        usuarioService.registrarUsuario(usuario);
-		        return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
-		    } catch (exceptionPers e) {
-		        // Enviar el mensaje de error específico (nombre o correo ya en uso)
-		        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		    }
+		usuarioService.registrarUsuario(usuario);
+		
+		 return new ResponseEntity<>("Usuario registrado exitosamente", HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
@@ -57,8 +53,8 @@ public class UsuarioController {
 	            return new ResponseEntity<>("Contraseña inválida", HttpStatus.UNAUTHORIZED);
 	        }
 
-	    } catch (exceptionPers e) {
-	        return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+	    } catch (EntityNotFoundException e) {
+	    	return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
 	    }
 			
 		
