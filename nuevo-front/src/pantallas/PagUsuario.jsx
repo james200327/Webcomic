@@ -5,6 +5,8 @@ import logoUsuario from '../Imagenes/logoUsaurio.png';
 import logoCarrito from '../Imagenes/carrito.png';
 
 import lupa from '../Imagenes/lupita.png';
+//import axios from 'axios';
+
 
 const pagUsuario = () => {
     return (
