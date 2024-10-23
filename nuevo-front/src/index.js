@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import App from './App';
 //import InicioSesion from './pantallas/InicioSesion';
 //import PagInicio from './pantallas/PagInicio';
-import PagUsuario from './pantallas/PagUsuario';
+//import PagUsuario from './pantallas/PagUsuario';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
    
-    <PagUsuario/>
+    <App/>
 
   </React.StrictMode>
 );
