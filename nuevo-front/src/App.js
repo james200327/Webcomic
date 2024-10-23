@@ -3,7 +3,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RegistroUsuario from "./pantallas/RegistroUsuario";
 import InicioSesion from "./pantallas/InicioSesion";
-import PagInicio from './pantallas/PagInicio';
+import MainPage from './pantallas/MainPage';
+import PointsPage from './pantallas/PointsPage';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<InicioSesion/>}/>
         <Route path="/registro" element={<RegistroUsuario/>}/>
-        <Route path="/inicio" element={<PagInicio/>}/>
+        <Route path="/inicio" element={<MainPage/>}/>
+        <Route path='/pagPuntos' element={<PointsPage/>}></Route>
       </Routes>
     </Router>
    
