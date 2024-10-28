@@ -6,6 +6,7 @@ import '../Estilos/MainPage.css'
 export default function MainPage (){
     return(
         <>
+        {/**esto es un comentario */}
         <Navbar/>
         <div className="App">
         <h3 className="mp-h3">Nuestras Recomendaciones</h3>
