@@ -53,6 +53,8 @@ const RegistroUsuario = () => {
         } catch (error) {
             if (error.response && error.response.data) {
                 setMensaje(error.response.data); // Mensaje desde el backend
+            }else{
+                setMensaje("Nombre o correo ya en uso");
             }
         }
     };
