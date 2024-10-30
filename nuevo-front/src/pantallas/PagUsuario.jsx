@@ -1,4 +1,5 @@
 import '../Estilos/pagMiCuenta.css';
+import React from 'react';
 import logos from '../Imagenes/Designer.jpeg';
 
 import logoUsuario from '../Imagenes/logoUsaurio.png';
