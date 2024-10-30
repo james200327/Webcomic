@@ -1,8 +1,8 @@
 // src/App.js
 import React from 'react';
-import PaymentMethods from './PaymentMethod.jsx';
-import PointCard from './PointCard.jsx';
-import { Navbar } from "./Navbar";
+import PaymentMethods from '../componentes/PaymentMethod.jsx';
+import PointCard from '../componentes/PointCard.jsx';
+import { Navbar } from "../componentes/Navbar.jsx";
 import '../Estilos/PointsPage.css';
 
 export default function PointsPage() {
