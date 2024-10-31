@@ -1,13 +1,21 @@
 import React from 'react';
 import '../Estilos/ProductCard.css';
-export function ProductCard({ image, name, price, rating, reviews, deliveryInfo }) {
+import { Link } from 'react-router-dom';
+import InfinityComics from '../Imagenes/logo.png'
+import InfinityPoints from '../Imagenes/InfinityPoints.jpg'
+export function ProductCard({ id, image, name, price, rating, reviews, deliveryInfo }) {
   return (
-    <div className="product-card">
+    
+    <Link  to={{
+      pathname: `/product/${id}`,
+    }}
+    state={{ image, name, price, rating, reviews, deliveryInfo }}
+    className="product-card">
       <img src={image} alt={name} className="product-image" />
       <h3 className="product-name">{name}</h3>
       <div className='div-product-price'>
       <p className="product-price">{price}</p>
-      <img className='product-infinitypoints-img' src="/images/InfinityPoints.jpg" alt="InfinityPoints" />
+      <img className='product-infinitypoints-img' src={InfinityPoints} alt="InfinityPoints" />
       </div>
     
       <div className="product-rating">
@@ -16,10 +24,10 @@ export function ProductCard({ image, name, price, rating, reviews, deliveryInfo 
         <span>{reviews} opiniones</span>
       </div>
       <div className='div-delivery'>
-      <img src={image} alt="Infinity Comics" className='img-delivery' />
+      <img src={InfinityComics} alt="Infinity Comics" className='img-delivery' />
       <p className="product-delivery">{deliveryInfo}</p>
       </div>     
-    </div>
+    </Link>
   );
 }
 
