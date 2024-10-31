@@ -22,7 +22,12 @@ public class confWeb{
         http
         .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/usuarios/registro", "/api/usuarios/login").permitAll() // Permitir acceso a registro y login
+                .requestMatchers(
+                		"/api/usuarios/registro", 
+                		"/api/usuarios/login", 
+                		"/api/comics/todos",
+                		"/api/comics/{id}"
+                		).permitAll() // Permitir acceso a registro y login
                 .anyRequest().authenticated() // Otras rutas requieren autenticación
             )
             .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource())); // Configura CORS aquí
@@ -33,7 +38,7 @@ public class confWeb{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Permitir solo este origen
+        configuration.setAllowedOrigins(List.of("http://localhost:5173")); // Permitir solo este origen
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

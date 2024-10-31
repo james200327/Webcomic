@@ -2,7 +2,8 @@ import { Navbar } from "../componentes/Navbar";
 import React from 'react';
 import { ProductCard } from "../componentes/ProductCard";
 import '../Estilos/MainPage.css'
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import aot_1 from '../Imagenes/aot/aot-1.jpg';
 
 import aot1 from "../Imagenes/aot/aot-1.jpg";
@@ -24,12 +25,27 @@ import wolv6 from '../Imagenes/wolverine/wolverine-6.jpg';
 import wolv7 from '../Imagenes/wolverine/wolverine-7.jpg';
 import wolv8 from '../Imagenes/wolverine/wolverine-8.jpg';
 
+const MainPage = () => {
 
+    const [comic, setComic] = useState([]);
+    const [mostrarFormComic, setmostrarFormComic] = useState(false);
+    const [nuevoComic, setNuevoComic] = useState({
+        titulo:'',
+        autor:'',
+        genero:'',
+        precio:'',
+        stock:'',
+        fecha_publi:'',
+        imagen: null
+    });
 
-export default function MainPage (){
+    
+}
+
+{/*export default function MainPage (){
     return(
         <>
-        {/**esto es un comentario */}
+        {/**esto es un comentario 
         <Navbar/>
         <div className="App">
         <h3 className="mp-h3">Nuestras Recomendaciones</h3>
@@ -59,4 +75,4 @@ export default function MainPage (){
         </div>
         </>
     )
-}
+}*/}
