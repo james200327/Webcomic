@@ -1,7 +1,7 @@
 import { Navbar } from "./Navbar";
 import { ProductCard } from "./ProductCard";
 import '../Estilos/MainPage.css'
-
+import aot_1 from '../Imagenes/aot/aot-1.jpg';
 
 export default function MainPage (){
     return(
