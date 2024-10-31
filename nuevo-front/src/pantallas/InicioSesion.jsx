@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 import '../Estilos/inicioSesion.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -54,7 +55,7 @@ const InicioSesion = () => {
 
       <h1 className="fm-h1">Inicio Sesion</h1>
 
-      {mensaje && <p>{mensaje}</p>}
+      {mensaje && <p className="error-message">{mensaje}</p>}
 
       <div className="fm-div-info">
         <label htmlFor="name" className="fm-label">Nombre</label>

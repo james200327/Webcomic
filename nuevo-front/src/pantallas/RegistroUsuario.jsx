@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../Estilos/RegistroUsuario.css"
@@ -53,6 +54,8 @@ const RegistroUsuario = () => {
         } catch (error) {
             if (error.response && error.response.data) {
                 setMensaje(error.response.data); // Mensaje desde el backend
+            }else{
+                setMensaje("Nombre o correo ya en uso");
             }
         }
     };
