@@ -2,9 +2,9 @@ import { Navbar } from "../componentes/Navbar";
 import React from 'react';
 import { ProductCard } from "../componentes/ProductCard";
 import '../Estilos/MainPage.css'
-<<<<<<< HEAD
+
 import aot_1 from '../Imagenes/aot/aot-1.jpg';
-=======
+
 import aot1 from "../Imagenes/aot/aot-1.jpg";
 import aot2 from "../Imagenes/aot/aot2.jpg";
 import aot3 from "../Imagenes/aot/aot3.jpg";
@@ -24,7 +24,7 @@ import wolv6 from '../Imagenes/wolverine/wolverine-6.jpg';
 import wolv7 from '../Imagenes/wolverine/wolverine-7.jpg';
 import wolv8 from '../Imagenes/wolverine/wolverine-8.jpg';
 
->>>>>>> main
+
 
 export default function MainPage (){
     return(
