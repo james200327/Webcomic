@@ -38,6 +38,8 @@ const MainPage = () => {
         /*fecha_publi:''*/
     });
 
+    const [imagenPreview, setImagenPreview] = useState(null);
+
     useEffect(() => {
 
         const listaComics = async () => {
@@ -60,6 +62,7 @@ const MainPage = () => {
         newComic.append('genero', nuevoComic.genero);
         newComic.append('precio', nuevoComic.precio);
         newComic.append('stock', nuevoComic.stock);
+        newComic.append('imagen',imagenPreview)
        /* newComic.append('fecha_publi', nuevoComic.fecha_publi);*/
 
         try {
@@ -70,6 +73,17 @@ const MainPage = () => {
             setmostrarFormComic(false); // Ocultar el formulario
         } catch (error) {
             console.error('Error al agregar el cómic:', error);
+        }
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagenPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -87,6 +101,8 @@ const MainPage = () => {
                     <input type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
                     <input type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
                     <input type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
+                    <input type="file" accept="image/*" onChange={handleImageChange} />
+                    {imagenPreview && <img src={imagenPreview} alt="Preview" style={{ width: '100px', height: 'auto' }} />}
                     <button onClick={manejoAddComic}>Agregar</button>
                 </div>
             )}
@@ -95,7 +111,7 @@ const MainPage = () => {
             <h3 className="mp-h3">Nuestras Recomendaciones</h3>
             <div className="div-products">
                 {comic.map((comic) => (
-                    <ProductCard image={aot1} key={comic.id} comic={comic} rating = {4.5} reviews = {12} />
+                    <ProductCard image={comic.imagen || imagenPreview} key={comic.id} comic={comic} rating = {4.5} reviews = {12} />
                 ))}
             </div>
             </div>
