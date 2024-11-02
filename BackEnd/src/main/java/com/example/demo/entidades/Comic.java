@@ -21,16 +21,15 @@ public class Comic {
 	private double precio;
 	private int stock;
 	
-	@Embedded
-	private Date fecha_publicacion;
+
+	//private Date fecha_publicacion;
 	
-	private String rutaImagen;
 	public Comic() {
 		
 	}
 
-	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
-			Date fecha_publicacion, String rutaImagen) {
+	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock
+			/*Date fecha_publicacion*/) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -38,16 +37,7 @@ public class Comic {
 		this.genero = genero;
 		this.precio = precio;
 		this.stock = stock;
-		this.fecha_publicacion = fecha_publicacion;
-		this.rutaImagen = rutaImagen;
-	}
-
-	public String getRutaImagen() {
-		return rutaImagen;
-	}
-
-	public void setRutaImagen(String rutaImagen) {
-		this.rutaImagen = rutaImagen;
+		//this.fecha_publicacion = fecha_publicacion;
 	}
 
 	public Long getId() {
@@ -98,13 +88,7 @@ public class Comic {
 		this.stock = stock;
 	}
 
-	public Date getFecha_publicacion() {
-		return fecha_publicacion;
-	}
 
-	public void setFecha_publicacion(Date fecha_publicacion) {
-		this.fecha_publicacion = fecha_publicacion;
-	}
 	
 	
 	

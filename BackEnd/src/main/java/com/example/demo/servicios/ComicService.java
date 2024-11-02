@@ -32,8 +32,7 @@ public class ComicService {
 		comicExistente.setGenero(comic.getGenero());
 		comicExistente.setPrecio(comic.getPrecio());
 		comicExistente.setStock(comic.getStock());
-		comicExistente.setFecha_publicacion(comic.getFecha_publicacion());
-		comicExistente.setRutaImagen(comic.getRutaImagen());
+		//comicExistente.setFecha_publicacion(comic.getFecha_publicacion());
 		
 		return comicRepository.save(comicExistente);
 	}

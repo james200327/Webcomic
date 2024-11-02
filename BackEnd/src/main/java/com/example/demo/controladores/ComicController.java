@@ -29,18 +29,17 @@ public class ComicController {
 		this.comicService = comicService;
 	}
 	
+	@PostMapping("/agregar")
 	public ResponseEntity<String> agregarComic(
 	        @RequestParam("titulo") String titulo,
-	        @RequestParam("descripcion") String autor,
+	        @RequestParam("autor") String autor,
 	        @RequestParam("genero") String genero,
 	        @RequestParam("precio") Double precio,
-	        @RequestParam("stock") Integer stock,
-	        @RequestParam("fechaPubli")Date fechaPubli,
-	        @RequestParam("imagen") MultipartFile imagen) {
+	        @RequestParam("stock") Integer stock
+	        /*@RequestParam("fechaPubli")Date fechaPubli*/){
 	    try {
 	        // Guardar imagen en el sistema de archivos (o una ruta específica)
-	        String imagePath = "/ruta/al/directorio/" + imagen.getOriginalFilename();
-	        imagen.transferTo(new File(imagePath));
+	      
 
 	        // Crear y guardar el cómic en la base de datos
 	        Comic nuevoComic = new Comic();
@@ -49,8 +48,8 @@ public class ComicController {
 	        nuevoComic.setGenero(genero);
 	        nuevoComic.setPrecio(precio);
 	        nuevoComic.setStock(stock);
-	        nuevoComic.setFecha_publicacion(fechaPubli);
-	        nuevoComic.setRutaImagen(imagePath); // guardamos la ruta de la imagen
+	        //nuevoComic.setFecha_publicacion(fechaPubli);
+	        // guardamos la ruta de la imagen
 
 	        comicService.agregarComic(nuevoComic);
 
