@@ -1,6 +1,9 @@
 package com.example.demo.controladores;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
@@ -35,23 +38,25 @@ public class ComicController {
 	        @RequestParam("autor") String autor,
 	        @RequestParam("genero") String genero,
 	        @RequestParam("precio") Double precio,
-	        @RequestParam("stock") Integer stock
-	        /*@RequestParam("fechaPubli")Date fechaPubli*/){
+	        @RequestParam("stock") Integer stock,
+	        @RequestParam("imagen") MultipartFile imagen) {
 	    try {
-	        // Guardar imagen en el sistema de archivos (o una ruta específica)
-	      
+	    	  String nombreArchivo = System.currentTimeMillis() + "_" + imagen.getOriginalFilename();
+	          Path rutaArchivo = Paths.get("src/main/resources/static/imagenes/" + nombreArchivo);
+	          Files.copy(imagen.getInputStream(), rutaArchivo);
 
-	        // Crear y guardar el cómic en la base de datos
-	        Comic nuevoComic = new Comic();
-	        nuevoComic.setTitulo(titulo);
-	        nuevoComic.setAutor(autor);
-	        nuevoComic.setGenero(genero);
-	        nuevoComic.setPrecio(precio);
-	        nuevoComic.setStock(stock);
-	        //nuevoComic.setFecha_publicacion(fechaPubli);
-	        // guardamos la ruta de la imagen
+	          // Crear y guardar el objeto Comic
+	          Comic nuevoComic = new Comic();
+	          nuevoComic.setTitulo(titulo);
+	          nuevoComic.setAutor(autor);
+	          nuevoComic.setGenero(genero);
+	          nuevoComic.setPrecio(precio);
+	          nuevoComic.setStock(stock);
 
-	        comicService.agregarComic(nuevoComic);
+	          // Guardar la URL relativa de la imagen en la base de datos
+	          nuevoComic.setImagenUrl("/imagenes/" + nombreArchivo);
+
+	          comicService.agregarComic(nuevoComic);
 
 	        return new ResponseEntity<>("Cómic agregado con imagen", HttpStatus.CREATED);
 	    } catch (Exception e) {

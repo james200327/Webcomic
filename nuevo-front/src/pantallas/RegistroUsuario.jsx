@@ -37,7 +37,7 @@ const RegistroUsuario = () => {
         }
 
         try {
-            const respuesta = await axios.post('http://localhost:5173/api/usuarios/registro', {
+            const respuesta = await axios.post('http://localhost:8080/api/usuarios/registro', {
                 username: data.nombre,
                 email: data.email,
                 password: data.password,

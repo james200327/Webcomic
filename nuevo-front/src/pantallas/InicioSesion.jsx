@@ -25,7 +25,7 @@ const InicioSesion = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5173/api/usuarios/login', {
+      const response = await axios.post('http://localhost:8080/api/usuarios/login', {
         username: datos.nombre,
         password: datos.password
       });

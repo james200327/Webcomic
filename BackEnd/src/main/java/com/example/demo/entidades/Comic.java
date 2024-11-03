@@ -20,6 +20,8 @@ public class Comic {
 	private String genero;
 	private double precio;
 	private int stock;
+	private String imagenUrl;
+
 	
 
 	//private Date fecha_publicacion;
@@ -28,15 +30,16 @@ public class Comic {
 		
 	}
 
-	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock
-			/*Date fecha_publicacion*/) {
-		super();
+	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
+			String imagenUrl) {
+		
 		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.genero = genero;
 		this.precio = precio;
 		this.stock = stock;
+		this.imagenUrl = imagenUrl;
 		//this.fecha_publicacion = fecha_publicacion;
 	}
 
@@ -88,7 +91,13 @@ public class Comic {
 		this.stock = stock;
 	}
 
+	public String getImagenUrl() {
+	    return imagenUrl;
+	}
 
+	public void setImagenUrl(String imagenUrl) {
+	    this.imagenUrl = imagenUrl;
+	}
 	
 	
 	
