@@ -17,30 +17,32 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 public class confWeb{
-	@Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-        .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/usuarios/registro", "/api/usuarios/login").permitAll() // Permitir acceso a registro y login
-                .anyRequest().authenticated() // Otras rutas requieren autenticación
-            )
-            .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource())); // Configura CORS aquí
+	  @Bean
+	    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	        http
+	            .csrf(csrf -> csrf.disable()) // Desactivar CSRF para facilitar pruebas en desarrollo
+	            .authorizeHttpRequests(auth -> auth
+	                .requestMatchers("/api/usuarios/registro", "/api/usuarios/login","/api/comics/todos",
+	                		"/api/comics/{id}","/imagenes/**") // Rutas públicas para registro y login
+	                .permitAll()
+	                .anyRequest().authenticated() // Proteger todas las demás rutas
+	            )
+	            .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource())); // Configurar CORS
 
-        return http.build();
-    }
+	        return http.build();
+	    }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Permitir solo este origen
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-        
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+	    @Bean
+	    public CorsConfigurationSource corsConfigurationSource() {
+	        CorsConfiguration configuration = new CorsConfiguration();
+	        configuration.setAllowedOrigins(List.of("http://localhost:5173")); // Permitir solo este origen en desarrollo
+	        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+	        configuration.setAllowedHeaders(List.of("*"));
+	        configuration.setAllowCredentials(true);
+
+	        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	        source.registerCorsConfiguration("/**", configuration);
+	        return source;
+	    }
 	   
 }
