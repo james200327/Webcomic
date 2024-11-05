@@ -97,7 +97,15 @@ const MainPage = () => {
                             <input className="div-info-input" type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
-                            <button className="div-info-file" type="file" accept="image/*" onChange={handleImageChange}>Imagen</button>
+                            <button className="div-info-file" onClick={() => document.getElementById('fileInput').click()}>Seleccionar imagen</button>
+                                <input 
+                                id="fileInput" 
+                                type="file" 
+                                accept="image/*" 
+                                style={{ display: 'none' }} 
+                                onChange={handleImageChange} 
+                                />
+
                             <button className="div-info-agregar" onClick={manejoAddComic}>Agregar</button>
                         </div>
                     )}
