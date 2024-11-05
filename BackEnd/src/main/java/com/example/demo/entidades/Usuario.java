@@ -20,7 +20,7 @@ public class Usuario {
 	private String password;
 	private String email;
 	private LocalDate fecha_registro;
-	private List<String>roles;
+	private String roles;
 	
 	@Embedded
 	private Direccion direccion;
@@ -70,11 +70,11 @@ public class Usuario {
 		this.fecha_registro = fecha_registro;
 	}
 
-	public List<String> getRoles() {
+	public String getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
+	public void setRoles(String roles) {
 		this.roles = roles;
 	}
 

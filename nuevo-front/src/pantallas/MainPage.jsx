@@ -4,40 +4,23 @@ import { ProductCard } from "../componentes/ProductCard";
 import '../Estilos/MainPage.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import aot_1 from '../Imagenes/aot/aot-1.jpg';
 
-import aot1 from "../Imagenes/aot/aot-1.jpg";
-import aot2 from "../Imagenes/aot/aot2.jpg";
-import aot3 from "../Imagenes/aot/aot3.jpg";
-import aot4 from "../Imagenes/aot/aot4.jpg";
-import aot5 from "../Imagenes/aot/aot5.jpg";
-import aot6 from "../Imagenes/aot/aot6.jpg";
-import aot7 from "../Imagenes/aot/aot7.jpg";
-import aot8 from "../Imagenes/aot/aot8.jpg";
-
-
-import wolv1 from '../Imagenes/wolverine/wolverine-1.jpeg';
-import wolv2 from '../Imagenes/wolverine/wolverine-2.jpg';
-import wolv3 from '../Imagenes/wolverine/wolverine-3.jpg';
-import wolv4 from '../Imagenes/wolverine/wolverine-4.jpg';
-import wolv5 from '../Imagenes/wolverine/wolverine-5.jpg';
-import wolv6 from '../Imagenes/wolverine/wolverine-6.jpg';
-import wolv7 from '../Imagenes/wolverine/wolverine-7.jpg';
-import wolv8 from '../Imagenes/wolverine/wolverine-8.jpg';
 
 const MainPage = () => {
 
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
     const [nuevoComic, setNuevoComic] = useState({
-        titulo:'',
-        autor:'',
-        genero:'',
-        precio:'',
-        stock:'',
-        imagen:null
+        titulo: '',
+        autor: '',
+        genero: '',
+        precio: '',
+        stock: '',
+        imagen: null
         /*fecha_publi:''*/
     });
+
+    const rol = localStorage.getItem("role");
 
     useEffect(() => {
 
@@ -50,7 +33,7 @@ const MainPage = () => {
             }
         };
         listaComics();
-    },[]);
+    }, []);
 
     const manejoAddComic = async () => {
 
@@ -61,11 +44,11 @@ const MainPage = () => {
         newComic.append('genero', nuevoComic.genero);
         newComic.append('precio', nuevoComic.precio);
         newComic.append('stock', nuevoComic.stock);
-        
-       /* newComic.append('fecha_publi', nuevoComic.fecha_publi);*/
-       if (nuevoComic.imagen) {
-        newComic.append('imagen', nuevoComic.imagen);
-    }
+
+        /* newComic.append('fecha_publi', nuevoComic.fecha_publi);*/
+        if (nuevoComic.imagen) {
+            newComic.append('imagen', nuevoComic.imagen);
+        }
         try {
             await axios.post('http://localhost:8080/api/comics/agregar', newComic);
             // Volver a cargar la lista de cómics después de añadir uno nuevo
@@ -73,7 +56,7 @@ const MainPage = () => {
             setComic(response.data);
             setmostrarFormComic(false); // Ocultar el formulario
 
-            
+
         } catch (error) {
             console.error('Error al agregar el cómic:', error);
         }
@@ -90,33 +73,37 @@ const MainPage = () => {
         <>
             <h1>Comics en Venta</h1>
             {/* Botón solo para administradores */}
-            <button onClick={() => setmostrarFormComic(!mostrarFormComic)}>Agregar Cómic</button>
+            {rol === "ADMIN" && (
+                <>
+                    <button onClick={() => setmostrarFormComic(!mostrarFormComic)}>Agregar Cómic</button>
 
-            {mostrarFormComic && (
-                <div>
-                    <h2>Añadir un nuevo cómic</h2>
-                    <input type="text" placeholder="Título" onChange={(e) => setNuevoComic({ ...nuevoComic, titulo: e.target.value })} />
-                    <input type="text" placeholder="Autor" onChange={(e) => setNuevoComic({ ...nuevoComic, autor: e.target.value })} />
-                    <input type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
-                    <input type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
-                    <input type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
-                    <input type="file" accept="image/*" onChange={handleImageChange} />
-                   
-                    <button onClick={manejoAddComic}>Agregar</button>
-                </div>
+                    {mostrarFormComic && (
+                        <div>
+                            <h2>Añadir un nuevo cómic</h2>
+                            <input type="text" placeholder="Título" onChange={(e) => setNuevoComic({ ...nuevoComic, titulo: e.target.value })} />
+                            <input type="text" placeholder="Autor" onChange={(e) => setNuevoComic({ ...nuevoComic, autor: e.target.value })} />
+                            <input type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
+                            <input type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
+                            <input type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
+                            <input type="file" accept="image/*" onChange={handleImageChange} />
+
+                            <button onClick={manejoAddComic}>Agregar</button>
+                        </div>
+                    )}
+                </>
             )}
-            <Navbar/>
+            <Navbar />
             <div className="App">
-            <h3 className="mp-h3">Nuestras Recomendaciones</h3>
-            <div className="div-products">
-                {comic.map((comic) => (
-                    <ProductCard key={comic.id} comic={comic} image={`http://localhost:8080${comic.imagenUrl}`} rating = {4.5} reviews = {12} />
-                ))}
-            </div>
+                <h3 className="mp-h3">Nuestras Recomendaciones</h3>
+                <div className="div-products">
+                    {comic.map((comic) => (
+                        <ProductCard key={comic.id} comic={comic} image={`http://localhost:8080${comic.imagenUrl}`} rating={4.5} reviews={12} />
+                    ))}
+                </div>
             </div>
         </>
     );
-    
+
 }
 
 export default MainPage;

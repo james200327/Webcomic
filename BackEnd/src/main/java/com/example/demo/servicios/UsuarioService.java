@@ -12,10 +12,13 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UsuarioService {
-
+	public static final String ROLE_USER = "USER";
+    public static final String ROLE_ADMIN = "ADMIN";
 	private UsuarioRepository usuarioRepository;
 	private PasswordEncoder passwordEncoder;
 
+	
+	
 	public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
 		this.usuarioRepository = usuarioRepository;
 		this.passwordEncoder = passwordEncoder;
@@ -32,9 +35,13 @@ public class UsuarioService {
 
 			throw new RuntimeException("El correo ya esta en uso");
 		}
-
+		
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-
+		
+		if (usuario.getRoles() == null) {
+            usuario.setRoles(ROLE_USER); // Rol por defecto
+        }
+		
 		return usuarioRepository.save(usuario);
 	}
 
