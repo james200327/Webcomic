@@ -71,10 +71,10 @@ const MainPage = () => {
 
     return (
         <>
-            <h1>Comics en Venta</h1>
-            {/* Botón solo para administradores */}
             {rol === "ADMIN" && (
                 <>
+                    <h1>Formulario para añadir comics</h1>
+
                     <button onClick={() => setmostrarFormComic(!mostrarFormComic)}>Agregar Cómic</button>
 
                     {mostrarFormComic && (
