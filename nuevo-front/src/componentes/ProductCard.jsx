@@ -25,3 +25,4 @@ export function ProductCard({image, comic , rating, reviews}) {
 }
 
 
+

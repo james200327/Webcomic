@@ -45,11 +45,14 @@ public class UsuarioController {
 		
 		try {
 	        Usuario usuarioCargado = usuarioService.cargarUsuario(usuario.getUsername());
-	        
+	        System.out.print(usuarioCargado.getUsername()+", "+usuarioCargado.getPassword());
 	        // Verificar la contraseña
 	        if (passwordEncoder.matches(usuario.getPassword(), usuarioCargado.getPassword())) {
-	            return new ResponseEntity<>("Inicio de sesión exitoso", HttpStatus.OK);
+	        	  System.out.println("contra correcta  ");
+	            return new ResponseEntity<>(usuarioCargado.getRoles(), HttpStatus.OK);
+	          
 	        } else {
+	        	  System.out.println("contra no correcta "+usuario.getPassword());
 	            return new ResponseEntity<>("Contraseña inválida", HttpStatus.UNAUTHORIZED);
 	        }
 

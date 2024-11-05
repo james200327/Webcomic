@@ -30,6 +30,17 @@ const InicioSesion = () => {
         password: datos.password
       });
 
+      const role = response.data;  // Aquí recibes directamente "ADMIN" o "USER"
+      console.log(role);
+    if (role === "ADMIN") {
+        localStorage.setItem("role", role);
+        alert("Inicio de sesión exitoso como administrador");
+        // Redirigir al administrador a la página con el formulario de agregar cómics
+    } else if (role === "USER") {
+        localStorage.setItem("role", role);
+        alert("Inicio de sesión exitoso como usuario");
+        // Redirigir al usuario a la página de visualización sin el formulario
+    }
       // Si el inicio de sesión es exitoso, redirige a la página principal
       redirect('/inicio');  // Redirige a la página principal
 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 //import { Link } from 'react-router-dom'; // Importa el componente Link
+import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import carrito from '../Imagenes/carrito.png';
+import lupa from '../Imagenes/lupita.png';
+import logouser from '../Imagenes/logoUsaurio.png';
 import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,14 +58,16 @@ export function Navbar() {
 
           <div className="navbar-links">
             <button href="/mi-cuenta" className="navbar-link">
+              
               <i className="fas fa-user"></i> Mi cuenta
             </button>
             <button onClick={toggleCart} className="navbar-link">
+    
               <i className="fas fa-shopping-cart"></i> Mi cesta
               <span className="cart-count">0</span>
             </button>
-            <a href="/PaginaPuntos" className='navbar-link'>
-              <img src="/images/InfinityPoints.jpg" className='navbar-points-img' alt=""/>
+            <a href="/PagPuntos" className='navbar-link'>
+              <img src={InfinityPoints} className='navbar-points-img' alt=""/>
               <span className='points-count'>0</span>
             </a>
           </div>
