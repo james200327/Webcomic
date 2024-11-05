@@ -72,28 +72,27 @@ const MainPage = () => {
     return (
         <>
             {rol === "ADMIN" && (
-                <>
-                    <h1>Formulario para añadir comics</h1>
+                <div className="admin-main-div">
+                    <h1 className="admin-h1">Formulario para añadir comics</h1>
 
-                    <button onClick={() => setmostrarFormComic(!mostrarFormComic)}>Agregar Cómic</button>
+                    <button className="admin-button-create" onClick={() => setmostrarFormComic(!mostrarFormComic)}>Agregar Cómic</button>
 
                     {mostrarFormComic && (
-                        <div>
+                        <div className="admin-div-info">
                             <h2>Añadir un nuevo cómic</h2>
-                            <input type="text" placeholder="Título" onChange={(e) => setNuevoComic({ ...nuevoComic, titulo: e.target.value })} />
-                            <input type="text" placeholder="Autor" onChange={(e) => setNuevoComic({ ...nuevoComic, autor: e.target.value })} />
-                            <input type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
-                            <input type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
-                            <input type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
-                            <input type="file" accept="image/*" onChange={handleImageChange} />
-
-                            <button onClick={manejoAddComic}>Agregar</button>
+                            <input className="div-info-input" type="text" placeholder="Título" onChange={(e) => setNuevoComic({ ...nuevoComic, titulo: e.target.value })} />
+                            <input className="div-info-input" type="text" placeholder="Autor" onChange={(e) => setNuevoComic({ ...nuevoComic, autor: e.target.value })} />
+                            <input className="div-info-input" type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
+                            <input className="div-info-input" type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
+                            <input className="div-info-input" type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
+                            <button className="div-info-file" type="file" accept="image/*" onChange={handleImageChange}>Imagen</button>
+                            <button className="div-info-agregar" onClick={manejoAddComic}>Agregar</button>
                         </div>
                     )}
-                </>
+                </div>
             )}
             <Navbar />
-            <div className="App">
+            <div className="MainPage">
                 <h3 className="mp-h3">Nuestras Recomendaciones</h3>
                 <div className="div-products">
                     {comic.map((comic) => (
