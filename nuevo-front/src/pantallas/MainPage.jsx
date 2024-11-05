@@ -20,7 +20,11 @@ const MainPage = () => {
         /*fecha_publi:''*/
     });
 
+   
     const rol = localStorage.getItem("role");
+
+
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
 
@@ -69,6 +73,14 @@ const MainPage = () => {
         setNuevoComic({ ...nuevoComic, imagen: file });
     };
 
+    const filteredComics = comic.filter(c => {
+        const match = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
+        console.log(`Filtrando cómic "${c.titulo}":`, match); // Verificar filtro
+        return match;
+    });
+
+    
+
     return (
         <>
             {rol === "ADMIN" && (
@@ -92,13 +104,14 @@ const MainPage = () => {
                     )}
                 </>
             )}
-            <Navbar />
+            <Navbar setSearchTerm={setSearchTerm}/>
             <div className="App">
                 <h3 className="mp-h3">Nuestras Recomendaciones</h3>
                 <div className="div-products">
-                    {comic.map((comic) => (
+                    
+                {filteredComics.map((comic) => (
                         <ProductCard key={comic.id} comic={comic} image={`http://localhost:8080${comic.imagenUrl}`} rating={4.5} reviews={12} />
-                    ))}
+                         ))}
                 </div>
             </div>
         </>

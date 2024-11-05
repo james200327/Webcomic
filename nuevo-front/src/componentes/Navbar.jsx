@@ -7,7 +7,7 @@ import logouser from '../Imagenes/logoUsaurio.png';
 import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
-export function Navbar() {
+export function Navbar({setSearchTerm}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -50,8 +50,8 @@ export function Navbar() {
               <option value="comics">Comics</option>
               <option value="manga">Manga</option>
             </select>
-            <input type="text" placeholder="Buscar" className="search-input" />
-            <button className="search-button">
+            <input type="text" placeholder="Buscar" className="search-input" onChange={(e) => setSearchTerm(e.target.value)}/>
+            <button className="search-button" >
               <i className="fas fa-search"></i>
             </button>
           </div>
