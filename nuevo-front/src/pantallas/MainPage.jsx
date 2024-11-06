@@ -120,7 +120,7 @@ const MainPage = () => {
                 <div className="div-products">
                     
                 {filteredComics.map((comic) => (
-                        <ProductCard key={comic.id} comic={comic} image={`http://localhost:8080${comic.imagenUrl}`} rating={4.5} reviews={12} />
+                        <ProductCard key={comic.id} comic={comic} titulo={comic.titulo} image={`http://localhost:8080${comic.imagenUrl}`} rating={comic.rating} reviews={comic.reviews} stock={comic.stock}/>
                          ))}
                 </div>
             </div>
