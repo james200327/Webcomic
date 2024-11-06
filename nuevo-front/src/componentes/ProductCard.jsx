@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Estilos/ProductCard.css';
-
-export function ProductCard({ comic}) {
+import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import InfinityComics from '../Imagenes/logo.png';
+export function ProductCard({ comic, image}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -11,7 +12,7 @@ export function ProductCard({ comic}) {
     };
       return(
     <div className="product-card" onClick={handleClick}>
-      <img src={comic.image} alt={comic.titulo} className="product-image" />
+      <img src={image} className="product-image" />
       <h3 className="product-name">{comic.titulo}</h3>
       <div className='div-product-price'>
       <p className="product-price">{comic.precio}</p>
@@ -25,7 +26,7 @@ export function ProductCard({ comic}) {
       </div>
       <div className='div-delivery'>
       <img src={InfinityComics} alt="Infinity Comics" className='img-delivery' />
-      <p className="product-delivery">Quedan{comic.stock} unidades</p>
+      <p className="product-delivery">Quedan {comic.stock} unidades</p>
       </div>    
     </div> 
   );

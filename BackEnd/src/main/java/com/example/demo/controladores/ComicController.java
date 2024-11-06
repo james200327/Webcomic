@@ -86,9 +86,10 @@ public class ComicController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Comic> obtenerComicId(@PathVariable Long id){
+	public ResponseEntity<Comic> obtenerComicId(@PathVariable("id") Long id){
 		
 		 Comic comic = comicService.obtenerComicPorId(id);
+		 System.out.println(comic.getTitulo());
 	        return new ResponseEntity<>(comic, HttpStatus.OK);
 	}
 }

@@ -6,10 +6,10 @@ import { Navbar } from '../componentes/Navbar';
 import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductDetailPage() {
+export default function ProductDetailPage({}) {
     const redirect = useNavigate();
-    const { productId } = useParams(); // ID del producto desde la URL
-
+    const {productId} =  useParams();// ID del producto desde la URL
+    console.log(productId)
     // Estado local para los datos del producto
     const [product, setProduct] = useState({
         name: "Título del cómic",
@@ -18,7 +18,7 @@ export default function ProductDetailPage() {
         reviews: 0,
         deliveryInfo: "Información de entrega no disponible",
         description: "Cargando descripción...",
-        images: ["/path/to/default-image.jpg"]
+        images: null
     });
 
     const goMainPage = () => {
@@ -27,17 +27,19 @@ export default function ProductDetailPage() {
 
     useEffect(() => {
         // Llama al backend para obtener los detalles del producto
-        axios.get(`http://localhost:5000/api/comics/${productId}`)
+        axios.get(`http://localhost:8080/api/comics/${productId}`)
             .then(response => {
+               
                 const data = response.data;
+                console.log(data)
                 setProduct({
-                    name: data.titulo || "Título del cómic",
+                    name: data.titulo ,
                     price: data.precio || 0,
                     rating: 4.5, // Placeholder, actualízalo si tienes este campo en el backend
                     reviews: 10, // Placeholder, actualízalo si tienes este campo en el backend
                     deliveryInfo: `Stock disponible: ${data.stock}`,
                     description: `${data.autor} - ${data.genero}`,
-                    images: [data.imagenUrl || "/path/to/default-image.jpg"]
+                    images:data.imagenUrl
                 });
             })
             .catch(error => {
@@ -54,7 +56,7 @@ export default function ProductDetailPage() {
                 </nav>
                 <div className="product-main">
                     <div className="product-images">
-                        <img src={product.images[0]} alt={product.name} />
+                    <img src={`http://localhost:8080${product.images}`} alt={product.name} />
                     </div>
                     <div className="product-info">
                         <h1>{product.name}</h1>
