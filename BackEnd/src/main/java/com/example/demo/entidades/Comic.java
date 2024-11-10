@@ -21,7 +21,7 @@ public class Comic {
 	private double precio;
 	private int stock;
 	private String imagenUrl;
-
+	private String descripcion;
 	
 
 	//private Date fecha_publicacion;
@@ -31,7 +31,7 @@ public class Comic {
 	}
 
 	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
-			String imagenUrl) {
+			String imagenUrl, String descripcion) {
 		
 		this.id = id;
 		this.titulo = titulo;
@@ -40,7 +40,16 @@ public class Comic {
 		this.precio = precio;
 		this.stock = stock;
 		this.imagenUrl = imagenUrl;
+		this.descripcion = descripcion;
 		//this.fecha_publicacion = fecha_publicacion;
+	}
+
+	public String getDescripcion(){
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion){
+		this.descripcion = descripcion;
 	}
 
 	public Long getId() {
