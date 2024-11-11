@@ -17,7 +17,7 @@ export default function ProductDetailPage({}) {
         rating: 0,
         reviews: 0,
         deliveryInfo: "Información de entrega no disponible",
-        description: "Cargando descripción...",
+        descripcion: "Cargando descripción...",
         images: null
     });
 
@@ -38,7 +38,7 @@ export default function ProductDetailPage({}) {
                     rating: 4.5, // Placeholder, actualízalo si tienes este campo en el backend
                     reviews: 10, // Placeholder, actualízalo si tienes este campo en el backend
                     deliveryInfo: `Stock disponible: ${data.stock}`,
-                    description: `${data.autor} - ${data.genero}`,
+                    description: `${data.autor} - ${data.descripcion}`,
                     images:data.imagenUrl
                 });
             })

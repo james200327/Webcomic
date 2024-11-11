@@ -72,7 +72,7 @@ const MainPage = () => {
 
     const manejoBorrarComic = async (id) => {
         try {
-            await axios.post(`http://localhost:8080/api/comics/eliminar/${id}`);
+            await axios.delete(`http://localhost:8080/api/comics/eliminar/${id}`);
             setComic(comic.filter((c) => c.id !== id));
         } catch (error) {
             console.error('Error al borrar el cómic:', error);
