@@ -48,6 +48,11 @@ public class ComicService {
 				if (comic.getImagenUrl() != null && !comic.getImagenUrl().isEmpty()) {
 					comicExistente.setImagenUrl(comic.getImagenUrl());
 				}
+
+				if (comic.getDescripcion() != null && !comic.getDescripcion().isEmpty()) {
+					comicExistente.setTitulo(comic.getDescripcion());
+				}
+
 		
 		return comicRepository.save(comicExistente);
 	}
