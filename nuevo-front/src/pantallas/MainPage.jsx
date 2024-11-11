@@ -16,7 +16,8 @@ const MainPage = () => {
         genero: '',
         precio: '',
         stock: '',
-        imagen: null
+        imagen: null,
+        descripcion: ''
         /*fecha_publi:''*/
     });
 
@@ -48,6 +49,7 @@ const MainPage = () => {
         newComic.append('genero', nuevoComic.genero);
         newComic.append('precio', nuevoComic.precio);
         newComic.append('stock', nuevoComic.stock);
+        newComic.append('descripcion', nuevoComic.descripcion);
 
         /* newComic.append('fecha_publi', nuevoComic.fecha_publi);*/
         if (nuevoComic.imagen) {
@@ -66,6 +68,15 @@ const MainPage = () => {
         }
 
         window.location.reload();
+    };
+
+    const manejoBorrarComic = async (id) => {
+        try {
+            await axios.post(`http://localhost:8080/api/comics/eliminar/${id}`);
+            setComic(comic.filter((c) => c.id !== id));
+        } catch (error) {
+            console.error('Error al borrar el cómic:', error);
+        }
     };
 
     const handleImageChange = (e) => {
@@ -97,14 +108,21 @@ const MainPage = () => {
                             <input className="div-info-input" type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
+                            <textarea 
+                                className="div-info-textarea" 
+                                placeholder="Descripción" 
+                                onChange={(e) => setNuevoComic({ ...nuevoComic, descripcion: e.target.value })}
+                            />
                             <button className="div-info-file" onClick={() => document.getElementById('fileInput').click()}>Seleccionar imagen</button>
-                                <input 
+                                
+
+                            <input 
                                 id="fileInput" 
                                 type="file" 
                                 accept="image/*" 
                                 style={{ display: 'none' }} 
                                 onChange={handleImageChange} 
-                                />
+                            />
 
                             <button className="div-info-agregar" onClick={manejoAddComic}>Agregar</button>
                         </div>
@@ -120,7 +138,17 @@ const MainPage = () => {
                 <div className="div-products">
                     
                 {filteredComics.map((comic) => (
-                        <ProductCard key={comic.id} comic={comic} titulo={comic.titulo} image={`http://localhost:8080${comic.imagenUrl}`} rating={comic.rating} reviews={comic.reviews} stock={comic.stock}/>
+                        <ProductCard 
+                        key={comic.id}
+                        comic={comic} 
+                        titulo={comic.titulo} 
+                        image={`http://localhost:8080${comic.imagenUrl}`} 
+                        rating={comic.rating} 
+                        reviews={comic.reviews} 
+                        stock={comic.stock}
+                        onDelete={() => manejoBorrarComic(comic.id)} // Función de eliminación
+                            isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
+                        />
                          ))}
                 </div>
             </div>

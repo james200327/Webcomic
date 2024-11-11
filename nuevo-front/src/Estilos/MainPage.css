@@ -32,6 +32,12 @@ flex-direction: column;
     margin-top: 20px;
 }
 
+.div-info-textarea{
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+
 .admin-div-info h2{
     text-align: center;
     color: orange;
@@ -40,7 +46,7 @@ flex-direction: column;
 
 .div-info-input{
     margin: 10px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     text-align: center;
     border-radius: 5px;
     border-color: #eee;

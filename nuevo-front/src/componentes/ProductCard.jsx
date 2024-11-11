@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import '../Estilos/ProductCard.css';
 import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
 import InfinityComics from '../Imagenes/logo.png';
-export function ProductCard({ comic, image}) {
+export function ProductCard({ comic, image, onDelete, isAdmin}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
         // Navega a ProductDetailPage pasando el ID del cómic en la URL
         navigate(`/product/${comic.id}`);
+    };
+
+    const handleDeleteClick = (e) => {
+        e.stopPropagation(); // Evita la navegación al hacer clic en "Eliminar"
+        onDelete(); // Llama a la función de eliminación
     };
       return(
     <div className="product-card" onClick={handleClick}>
@@ -27,7 +32,10 @@ export function ProductCard({ comic, image}) {
       <div className='div-delivery'>
       <img src={InfinityComics} alt="Infinity Comics" className='img-delivery' />
       <p className="product-delivery">Quedan {comic.stock} unidades</p>
-      </div>    
+      </div> 
+      {isAdmin && (
+                <button className='product-card-delete' onClick={handleDeleteClick}>Eliminar</button>
+            )}   
     </div> 
   );
 }
