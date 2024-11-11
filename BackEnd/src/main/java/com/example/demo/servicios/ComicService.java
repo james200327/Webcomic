@@ -42,9 +42,9 @@ public class ComicService {
 				if (comic.getStock() != 0) {  // Suponiendo que un stock de 0 indica que no se quiere modificar
 					comicExistente.setStock(comic.getStock());
 				}
-				if (comic.getDescripcion() != null && !comic.getDescripcion().isEmpty()) {
+				/*if (comic.getDescripcion() != null && !comic.getDescripcion().isEmpty()) {
 					comicExistente.setDescripcion(comic.getDescripcion());
-				}
+				}*/
 				if (comic.getImagenUrl() != null && !comic.getImagenUrl().isEmpty()) {
 					comicExistente.setImagenUrl(comic.getImagenUrl());
 				}

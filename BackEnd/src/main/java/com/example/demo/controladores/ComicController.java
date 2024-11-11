@@ -40,8 +40,7 @@ public class ComicController {
 			@RequestParam("genero") String genero,
 			@RequestParam("precio") Double precio,
 			@RequestParam("stock") Integer stock,
-			@RequestParam("imagen") MultipartFile imagen,
-			@RequestParam("descripcion") String descripcion) {
+			@RequestParam("imagen") MultipartFile imagen){
 				
 		try {
 			String nombreArchivo = System.currentTimeMillis() + "_" + imagen.getOriginalFilename();
@@ -57,7 +56,7 @@ public class ComicController {
 			nuevoComic.setStock(stock);
 			// Guardar la URL relativa de la imagen en la base de datos
 			nuevoComic.setImagenUrl("/imagenes/" + nombreArchivo);
-			nuevoComic.setDescripcion(descripcion);
+			
 			comicService.agregarComic(nuevoComic);
 
 			return new ResponseEntity<>("Cómic agregado con imagen", HttpStatus.CREATED);
