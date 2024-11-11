@@ -2,6 +2,7 @@ package com.example.demo.entidades;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Comic {
 	private double precio;
 	private int stock;
 	private String imagenUrl;
+	@Column(length = 1000)
 	private String descripcion;
 	
 
