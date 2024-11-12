@@ -32,7 +32,7 @@ public class PedidoController {
     @PostMapping("/crear")
     public ResponseEntity<Pedido> crearPedido(@RequestBody Usuario usuario) {
         Pedido pedido = pedidoService.crearPedido(usuario);
-        return ResponseEntity.ok(pedido);
+        return new ResponseEntity<>(pedido, HttpStatus.CREATED);
     }
 
     @PostMapping("/{pedidoId}/agregarProducto/{productoId}")

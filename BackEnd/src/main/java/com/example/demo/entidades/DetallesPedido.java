@@ -16,11 +16,11 @@ public class DetallesPedido {
     private Long id;
 
     @ManyToOne
-    //@JoinColumn(name = "pedido_id") // Vincula con el ID del pedido
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
     @ManyToOne
-   // @JoinColumn(name = "comic_id") // Vincula con el ID del cómic
+    @JoinColumn(name = "comic_id")
     private Comic comic;
 
     private int cantidad;

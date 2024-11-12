@@ -21,7 +21,7 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    //@JoinColumn(name = "usuario_id") // Esta columna almacenará el ID del usuario
+    @JoinColumn(name = "usuario_id") // Esta columna almacenará el ID del usuario
     private Usuario usuario;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -29,6 +29,16 @@ public class Pedido {
 
     // Agrega otros atributos del pedido si es necesario, como fecha o estado
     private double total;
+
+    public Pedido(){
+
+    }
+
+    public Pedido(Usuario usuario) {
+        this.usuario = usuario;
+        this.items = new ArrayList<>();
+        this.total = 0.0;
+    }
 
 
     public void agregarProducto(Comic comic, int cantidad) {

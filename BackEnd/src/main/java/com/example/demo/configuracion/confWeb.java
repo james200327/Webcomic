@@ -23,7 +23,9 @@ public class confWeb{
 	            .csrf(csrf -> csrf.disable()) // Desactivar CSRF para facilitar pruebas en desarrollo
 	            .authorizeHttpRequests(auth -> auth
 	                .requestMatchers("/api/usuarios/registro", "/api/usuarios/login","/api/comics/todos",
-	                		"/api/comics/{id}","api/comics/modificar/{id}","api/comics/eliminar/{id}","/imagenes/**") // Rutas públicas para registro y login
+	                		"/api/comics/{id}","api/comics/modificar/{id}","api/comics/eliminar/{id}","/imagenes/**",
+							"/api/pedidos/crear","/api/pedidos/{pedidoId}/agregarProducto/{productoId}","/api/pedidos/{pedidoId}/eliminarProducto/{productoId}",
+							"/api/pedidos//{pedidoId}/confirmar")// Rutas públicas para registro y login
 	                .permitAll()
 	                .anyRequest().authenticated() // Proteger todas las demás rutas
 	            )
