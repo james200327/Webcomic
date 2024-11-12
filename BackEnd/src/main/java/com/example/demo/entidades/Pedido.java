@@ -28,10 +28,49 @@ public class Pedido {
     private List<DetallesPedido> items = new ArrayList<>();
 
     // Agrega otros atributos del pedido si es necesario, como fecha o estado
-    private String estado;
-    private Date fechaCreacion;
+    private double total;
+
+
+    public void agregarProducto(Comic comic, int cantidad) {
+        DetallesPedido item = new DetallesPedido();
+        item.setComic(comic);
+        item.setCantidad(cantidad);
+        item.setPrecio(comic.getPrecio());
+        items.add(item);
+        total += comic.getPrecio() * cantidad;
+    }
+
+    public void eliminarProducto(Comic comic) {
+        for (DetallesPedido item : items) {
+            if (item.getComic().equals(comic)) {
+                total -= item.getPrecio() * item.getCantidad();
+                items.remove(item);
+                break;
+            }
+        }
+    }
+
+    public void confirmarPedido() {
+        for (DetallesPedido item : items) {
+            Comic Comic = item.getComic();
+            Comic.setStock(Comic.getStock() - item.getCantidad());
+        }
+        items.clear(); // Limpiar el carrito después de confirmar
+        total = 0;
+    }
 
     // Getters y setters
+
+
+
+    public double getTotal(){
+        return total;
+    }
+
+    public void setTotal(double total){
+        this.total = total;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,21 +93,5 @@ public class Pedido {
 
     public void setItems(List<DetallesPedido> items) {
         this.items = items;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 }
