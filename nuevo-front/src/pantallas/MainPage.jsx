@@ -4,7 +4,10 @@ import { ProductCard } from "../componentes/ProductCard";
 import '../Estilos/MainPage.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const MySwal = withReactContent(Swal);
 
 const MainPage = () => {
 
@@ -62,18 +65,28 @@ const MainPage = () => {
             setComic(response.data);
             setmostrarFormComic(false); // Ocultar el formulario
 
+            MySwal.fire({
+                title: 'Comic añadido exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              });
 
         } catch (error) {
             console.error('Error al agregar el cómic:', error);
         }
 
-        window.location.reload();
+       
     };
 
     const manejoBorrarComic = async (id) => {
         try {
             await axios.delete(`http://localhost:8080/api/comics/eliminar/${id}`);
             setComic(comic.filter((c) => c.id !== id));
+            MySwal.fire({
+                title: 'Comic elimando',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              });
         } catch (error) {
             console.error('Error al borrar el cómic:', error);
         }
