@@ -86,3 +86,16 @@
 .product-card-delete{
     background-color: #e0474c;
 }
+
+.product-card-edit{
+  background-color: orange;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border-color: #ddd;
+}
+
+.product-card-edit{
+  background-color: #e0474c;
+}
