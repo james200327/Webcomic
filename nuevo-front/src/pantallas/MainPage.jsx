@@ -1,22 +1,29 @@
 import { Navbar } from "../componentes/Navbar";
 import React from 'react';
 import { ProductCard } from "../componentes/ProductCard";
+import ModifyComicPage from '../componentes/ModifyComicPage';
 import '../Estilos/MainPage.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+const MySwal = withReactContent(Swal);
 
 
 const MainPage = () => {
 
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
+    const [selectedComic, setSelectedComic] = useState(null);
     const [nuevoComic, setNuevoComic] = useState({
         titulo: '',
         autor: '',
         genero: '',
         precio: '',
         stock: '',
-        imagen: null
+        imagen: null,
+        descripcion: ''
         /*fecha_publi:''*/
     });
 
@@ -48,6 +55,7 @@ const MainPage = () => {
         newComic.append('genero', nuevoComic.genero);
         newComic.append('precio', nuevoComic.precio);
         newComic.append('stock', nuevoComic.stock);
+        newComic.append('descripcion', nuevoComic.descripcion);
 
         /* newComic.append('fecha_publi', nuevoComic.fecha_publi);*/
         if (nuevoComic.imagen) {
@@ -59,13 +67,45 @@ const MainPage = () => {
             const response = await axios.get('http://localhost:8080/api/comics/todos');
             setComic(response.data);
             setmostrarFormComic(false); // Ocultar el formulario
-
+            
+            MySwal.fire({
+                title: 'Comic añadido exitosamente',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              });
 
         } catch (error) {
             console.error('Error al agregar el cómic:', error);
         }
 
         window.location.reload();
+    };
+
+    const manejoBorrarComic = async (id) => {
+        try {
+            await axios.delete(`http://localhost:8080/api/comics/eliminar/${id}`);
+            setComic(comic.filter((c) => c.id !== id));
+
+            MySwal.fire({
+                title: 'Comic elimando',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              });
+
+        } catch (error) {
+            console.error('Error al borrar el cómic:', error);
+        }
+    };
+
+    const manejoModificarComic = async (id, updatedComicData) => {
+        try {
+            await axios.put(`http://localhost:8080/api/comics/modificar/${id}`, updatedComicData);
+            
+            // Actualizar el estado de comics con el cómic modificado
+            setComic(comic.map(c => c.id === id ? { ...c, ...updatedComicData } : c));
+        } catch (error) {
+            console.error('Error al modificar el cómic:', error);
+        }
     };
 
     const handleImageChange = (e) => {
@@ -79,7 +119,18 @@ const MainPage = () => {
         return match;
     });
 
-    
+    const handleModifyClick = (comic) => {
+        setSelectedComic(comic);
+    };
+
+    const handleSaveChanges = (updatedComic) => {
+        setComic(comic.map(comic => comic.id === updatedComic.id ? updatedComic : comic));
+        setSelectedComic(null);
+    };
+
+    const handleCancel = () => {
+        setSelectedComic(null);
+    };
 
     return (
         <>
@@ -97,14 +148,21 @@ const MainPage = () => {
                             <input className="div-info-input" type="text" placeholder="Genero" onChange={(e) => setNuevoComic({ ...nuevoComic, genero: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Precio" onChange={(e) => setNuevoComic({ ...nuevoComic, precio: e.target.value })} />
                             <input className="div-info-input" type="number" placeholder="Stock" onChange={(e) => setNuevoComic({ ...nuevoComic, stock: e.target.value })} />
+                            <textarea 
+                                className="div-info-textarea" 
+                                placeholder="Descripción" 
+                                onChange={(e) => setNuevoComic({ ...nuevoComic, descripcion: e.target.value })}
+                            />
                             <button className="div-info-file" onClick={() => document.getElementById('fileInput').click()}>Seleccionar imagen</button>
-                                <input 
+                                
+
+                            <input 
                                 id="fileInput" 
                                 type="file" 
                                 accept="image/*" 
                                 style={{ display: 'none' }} 
                                 onChange={handleImageChange} 
-                                />
+                            />
 
                             <button className="div-info-agregar" onClick={manejoAddComic}>Agregar</button>
                         </div>
@@ -120,9 +178,28 @@ const MainPage = () => {
                 <div className="div-products">
                     
                 {filteredComics.map((comic) => (
-                        <ProductCard key={comic.id} comic={comic} image={`http://localhost:8080${comic.imagenUrl}`} rating={4.5} reviews={12} />
+                        <ProductCard 
+                        key={comic.id}
+                        comic={comic} 
+                        titulo={comic.titulo} 
+                        image={`http://localhost:8080${comic.imagenUrl}`} 
+                        rating={comic.rating} 
+                        reviews={comic.reviews} 
+                        stock={comic.stock}
+                        onDelete={() => manejoBorrarComic(comic.id)} // Función de eliminación
+                        isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
+                        onModify={() => handleModifyClick(comic)} // Función de modificación
+                        />
                          ))}
                 </div>
+
+                {selectedComic && (
+                <ModifyComicPage
+                    comic={selectedComic}
+                    onSave={handleSaveChanges}
+                    onCancel={handleCancel}
+                />
+            )}
             </div>
         </>
     );
