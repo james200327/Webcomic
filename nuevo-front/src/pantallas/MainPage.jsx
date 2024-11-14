@@ -103,7 +103,54 @@ const MainPage = () => {
         return match;
     });
 
-    
+    const manejoEditarComic = async (comicEdit) => {
+        const { value: formValues } = await MySwal.fire({
+            title: 'Modificar Comic',
+            html:
+                `<label>Titulo:</label>`+
+                `<input id="titulo" class="swal2-input" placeholder="Título" value="${comicEdit.titulo}">` +
+                `<label>Autor:</label>`+
+                `<input id="autor" class="swal2-input" placeholder="Autor" value="${comicEdit.autor}">` +
+                `<label>Genero:</label>`+
+                `<input id="genero" class="swal2-input" placeholder="Genero" value="${comicEdit.genero}">` +
+                `<label>Precio:</label>`+
+                `<input id="precio" class="swal2-input" placeholder="Precio" value="${comicEdit.precio}">` +
+                `<label>Stock:</label>`+
+                `<input id="stock" class="swal2-input" placeholder="Stock" value="${comicEdit.stock}">` +
+                `<label>Descripcion:</label>`+
+                `<textarea id="descripcion" class="swal2-textarea" placeholder="Descripción">${comicEdit.descripcion}</textarea>`,
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    titulo: document.getElementById('titulo').value,
+                    autor: document.getElementById('autor').value,
+                    genero: document.getElementById('genero').value,
+                    precio: document.getElementById('precio').value,
+                    stock: document.getElementById('stock').value,
+                    descripcion: document.getElementById('descripcion').value
+                }
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+        });
+
+        if (formValues) {
+            try {
+                const updatedComic = { ...comicEdit, ...formValues };
+                console.log("Datos a actualizar:", updatedComic);
+                await axios.put(`http://localhost:8080/api/comics/modificar/${comicEdit.id}`, updatedComic);
+                setComic(comic.map((c) => (c.id === comicEdit.id ? updatedComic : c)));
+                MySwal.fire({
+                    title: 'Comic modificado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                });
+            } catch (error) {
+                console.error('Error al modificar el cómic:', error);
+            }
+        }
+    };
 
     return (
         <>
@@ -159,7 +206,8 @@ const MainPage = () => {
                         rating={comic.rating} 
                         reviews={comic.reviews} 
                         stock={comic.stock}
-                        onDelete={() => manejoBorrarComic(comic.id)} // Función de eliminación
+                        onDelete={() => manejoBorrarComic(comic.id)}
+                        onEdit={() => manejoEditarComic(comic)} // Función de eliminación
                             isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
                         />
                          ))}

@@ -50,7 +50,7 @@ public class ComicService {
 				}
 
 				if (comic.getDescripcion() != null && !comic.getDescripcion().isEmpty()) {
-					comicExistente.setTitulo(comic.getDescripcion());
+					comicExistente.setDescripcion(comic.getDescripcion());
 				}
 
 		
