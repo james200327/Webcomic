@@ -55,4 +55,17 @@ public class UsuarioService {
                 
 
 	}
+
+	public Usuario cargarUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + id));
+    }
+
+	public Usuario actualizarPuntos(Long id, int puntos) {
+        Usuario usuario = cargarUsuarioPorId(id);
+        usuario.setPuntos(usuario.getPuntos() + puntos);
+        return usuarioRepository.save(usuario);
+    }
+
+	
 }
