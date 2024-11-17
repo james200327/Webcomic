@@ -1,5 +1,6 @@
 package com.example.demo.controladores;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -45,24 +46,30 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Map<String, String>> loginUsuario(@RequestBody Usuario usuario) {
 		
 		try {
-	        Usuario usuarioCargado = usuarioService.cargarUsuario(usuario.getUsername());
-	        System.out.print(usuarioCargado.getUsername()+", "+usuarioCargado.getPassword());
-	        // Verificar la contraseña
-	        if (passwordEncoder.matches(usuario.getPassword(), usuarioCargado.getPassword())) {
-	        	  System.out.println("contra correcta  ");
-	            return new ResponseEntity<>(usuarioCargado.getRoles(), HttpStatus.OK);
-	          
-	        } else {
-	        	  System.out.println("contra no correcta "+usuario.getPassword());
-	            return new ResponseEntity<>("Contraseña inválida", HttpStatus.UNAUTHORIZED);
-	        }
+        Usuario usuarioCargado = usuarioService.cargarUsuario(usuario.getUsername());
+        System.out.print(usuarioCargado.getUsername() + ", " + usuarioCargado.getPassword());
 
-	    } catch (EntityNotFoundException e) {
-	    	return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
-	    }
+        // Verificar la contraseña
+        if (passwordEncoder.matches(usuario.getPassword(), usuarioCargado.getPassword())) {
+            System.out.println("Contraseña correcta");
+
+            // Crear la respuesta con el rol y el userId
+            Map<String, String> response = new HashMap<>();
+            response.put("role", usuarioCargado.getRoles());
+            response.put("userId", usuarioCargado.getId().toString());
+
+            return ResponseEntity.ok(response);
+        } else {
+            System.out.println("Contraseña no correcta: " + usuario.getPassword());
+            return new ResponseEntity<>(Map.of("message", "Contraseña inválida"), HttpStatus.UNAUTHORIZED);
+        }
+
+    } catch (EntityNotFoundException e) {
+        return new ResponseEntity<>(Map.of("message", "Usuario no encontrado"), HttpStatus.NOT_FOUND);
+    }
 			
 		
 	}

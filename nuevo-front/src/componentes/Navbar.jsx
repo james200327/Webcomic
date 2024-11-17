@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 //import { Link } from 'react-router-dom'; // Importa el componente Link
 import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
 import carrito from '../Imagenes/carrito.png';
 import lupa from '../Imagenes/lupita.png';
 import logouser from '../Imagenes/logoUsaurio.png';
+import axios from 'axios';
 import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,6 +29,26 @@ export function Navbar({setSearchTerm}) {
   const irInicio = () =>{
     redirect("/inicio");
   }
+
+  const [puntos, setPuntos] = useState(0);
+
+    const userId = localStorage.getItem("userId"); // Asegúrate de que el ID del usuario esté guardado
+
+    // Función para obtener los puntos del usuario
+    const obtenerPuntos = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/usuarios/${userId}`);
+            setPuntos(response.data.puntos); // Actualizar el estado con los puntos obtenidos
+        } catch (error) {
+            console.error("Error al obtener los puntos:", error);
+        }
+    };
+
+    useEffect(() => {
+      if (userId) {
+        obtenerPuntos();
+      }
+    }, [userId]);
 
   return (
     <>
@@ -68,7 +89,7 @@ export function Navbar({setSearchTerm}) {
             </button>
             <a href="/PagPuntos" className='navbar-link'>
               <img src={InfinityPoints} className='navbar-points-img' alt=""/>
-              <span className='points-count'>0</span>
+              <span className='points-count'>{puntos}</span>
             </a>
           </div>
         </nav>

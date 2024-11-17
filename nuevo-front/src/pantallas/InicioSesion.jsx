@@ -34,26 +34,29 @@ const InicioSesion = () => {
         password: datos.password
       });
 
-      const role = response.data;  // Aquí recibes directamente "ADMIN" o "USER"
-      console.log(role);
+      const { role, userId } = response.data;
 
+      // Guardar role y userId en localStorage
+      localStorage.setItem("role", role);
+      localStorage.setItem("userId", userId);
+  
+      // Mostrar un SweetAlert en función del rol del usuario
       if (role === "ADMIN") {
-        localStorage.setItem("role", role);
-        MySwal.fire({
-          title: 'Inicio de sesión exitoso',
-          text: 'Inicio de sesión como administrador',
-          icon: 'success',
-          confirmButtonText: 'Continuar'
-        });
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como administrador',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
       } else if (role === "USER") {
-        localStorage.setItem("role", role);
-        MySwal.fire({
-          title: 'Inicio de sesión exitoso',
-          text: 'Inicio de sesión como usuario',
-          icon: 'success',
-          confirmButtonText: 'Continuar'
-        });
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como usuario',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
       }
+  
      
       redirect('/inicio');  // Redirige a la página principal
 
