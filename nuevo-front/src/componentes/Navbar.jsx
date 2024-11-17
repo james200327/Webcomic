@@ -50,6 +50,7 @@ export function Navbar({setSearchTerm}) {
       }
     }, [userId]);
 
+
   return (
     <>
       <header>

@@ -50,6 +50,7 @@ const PurchaseOption = ({ points, price, icon }) => {
                     icon: 'success',
                     confirmButtonText: 'Continuar',
                 });
+                window.location.reload();
 
                 // Opcional: recargar puntos del usuario desde el backend
             } catch (error) {
