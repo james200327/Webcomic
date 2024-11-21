@@ -1,16 +1,19 @@
 import React, { useState ,useEffect} from 'react';
 //import { Link } from 'react-router-dom'; // Importa el componente Link
 import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
-import carrito from '../Imagenes/carrito.png';
+
 import lupa from '../Imagenes/lupita.png';
 import logouser from '../Imagenes/logoUsaurio.png';
 import axios from 'axios';
 import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
+
 export function Navbar({setSearchTerm}) {
+  const [carrito, setCarrito] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,6 +53,52 @@ export function Navbar({setSearchTerm}) {
       }
     }, [userId]);
 
+    const fetchCarrito = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/pedidos/usuario/${userId}/carrito`);
+        setCarrito(response.data.items || []);
+        calculateTotal(response.data.items || []);
+      } catch (error) {
+        console.error('Error al obtener el carrito:', error);
+      }
+    };
+  
+    // Calcular el total del carrito
+    const calculateTotal = (items) => {
+      const newTotal = items.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+      setTotal(newTotal);
+    };
+  
+    // Actualizar la cantidad de un producto
+    const updateCantidad = async (comicId, cantidad) => {
+      try {
+        const response = await axios.put(
+          `http://localhost:8080/api/pedidos/usuario/${userId}/actualizarProducto/${comicId}`,
+          null,
+          { params: { cantidad } }
+        );
+        setCarrito(response.data.items);
+        calculateTotal(response.data.items);
+      } catch (error) {
+        console.error('Error al actualizar la cantidad:', error);
+      }
+    };
+  
+    // Eliminar un producto del carrito
+    const removeFromCart = async (comicId) => {
+      try {
+        await updateCantidad(comicId, 0); // Actualizar cantidad a 0 elimina el producto
+      } catch (error) {
+        console.error('Error al eliminar el producto:', error);
+      }
+    };
+    
+      // Opcional: Actualizar el carrito con el backend si es necesario
+      useEffect(() => {
+        if (userId) fetchCarrito();
+      }, [userId]);
+
+    console.log(carrito);
 
   return (
     <>
@@ -86,7 +135,7 @@ export function Navbar({setSearchTerm}) {
             <button onClick={toggleCart} className="navbar-link">
     
               <i className="fas fa-shopping-cart"></i> Mi cesta
-              <span className="cart-count">0</span>
+              <span className="cart-count">{carrito.length}</span>
             </button>
             <a href="/PagPuntos" className='navbar-link'>
               <img src={InfinityPoints} className='navbar-points-img' alt=""/>
@@ -121,13 +170,42 @@ export function Navbar({setSearchTerm}) {
       <div className={`sidebar-right ${isCartOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={toggleCart}>X</button>
         <h2>Mi Cesta</h2>
-        <ul className="category-list">
-          <li>Producto 1</li>
-          <li>Producto 2</li>
-          <li>Producto 3</li>
-          <li>Total: 0€</li>
+        <ul className="cart-list">
+          {carrito.map((item) => (
+            <li key={item.comic.id} className="cart-item">
+              <img src={`http://localhost:8080${item.comic.imagenUrl}`} alt={item.comic.titulo} className='imagen-cart'/>
+              <div className="cart-details">
+                <h4>{item.comic.titulo}</h4>
+                <p>{item.comic.precio} puntos</p>
+                <div className="cart-quantity">
+                  <button
+                    onClick={() => updateCantidad(item.comic.id, item.cantidad - 1)}
+                    disabled={item.cantidad === 1}
+                  >
+                    -
+                  </button>
+                  <span>{item.cantidad}</span>
+                  <button
+                    onClick={() => updateCantidad(item.comic.id, item.cantidad + 1)}
+                    disabled={item.cantidad >= item.comic.stock}
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <button className="remove-btn" onClick={() => removeFromCart(item.comic.id)}>X</button>
+            </li>
+          ))}
         </ul>
+        <div className="cart-total">
+          <h3>Total: {total} puntos</h3>
+        </div>
+        {/* <button className="checkout-btn" onClick={handleCheckout}>
+          Tramitar Pedido
+        </button> */}
       </div>
+
+      
 
       {/* Overlay para ambos sidebars */}
       <div 

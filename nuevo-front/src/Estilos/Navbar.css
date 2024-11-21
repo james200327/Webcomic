@@ -200,3 +200,7 @@
 .overlay.show {
   display: block;
 }
+
+.imagen-cart{
+  width: 50px;
+}

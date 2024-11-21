@@ -10,7 +10,7 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 const MainPage = () => {
-
+    
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
     const [nuevoComic, setNuevoComic] = useState({
@@ -151,6 +151,8 @@ const MainPage = () => {
             }
         }
     };
+
+   
 
     return (
         <>

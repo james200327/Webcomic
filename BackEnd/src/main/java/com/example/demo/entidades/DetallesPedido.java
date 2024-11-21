@@ -1,5 +1,7 @@
 package com.example.demo.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class DetallesPedido {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")
+    @JsonBackReference
     private Pedido pedido;
 
     @ManyToOne
@@ -24,7 +27,17 @@ public class DetallesPedido {
     private Comic comic;
 
     private int cantidad;
+
     private double precio;
+
+    public DetallesPedido() {}
+
+    public DetallesPedido(Pedido pedido, Comic comic, int cantidad, double precio) {
+        this.pedido = pedido;
+        this.comic = comic;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
 
     // Getters y setters
     public Long getId() {

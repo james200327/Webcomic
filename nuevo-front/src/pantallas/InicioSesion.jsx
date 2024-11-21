@@ -7,6 +7,7 @@ import logo from '../Imagenes/logo.png';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
+
 const MySwal = withReactContent(Swal);
 
 const InicioSesion = () => {
@@ -39,7 +40,6 @@ const InicioSesion = () => {
       // Guardar role y userId en localStorage
       localStorage.setItem("role", role);
       localStorage.setItem("userId", userId);
-  
       // Mostrar un SweetAlert en función del rol del usuario
       if (role === "ADMIN") {
           MySwal.fire({

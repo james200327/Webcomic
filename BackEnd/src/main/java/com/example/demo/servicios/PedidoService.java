@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entidades.Comic;
@@ -18,43 +19,56 @@ import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class PedidoService {
-
-    private PedidoRepository pedidoRepository;
-    private ComicService comicService;
-
     
-    public PedidoService(PedidoRepository pedidoRepository, ComicService comicService) {
-        this.pedidoRepository = pedidoRepository;
-        this.comicService = comicService;
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private ComicRepository comicRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public Pedido obtenerCarrito(Long usuarioId) {
+        return pedidoRepository.findByUsuarioIdAndEstado(usuarioId, "CARRITO")
+                .orElseGet(() -> {
+                    Usuario usuario = usuarioRepository.findById(usuarioId)
+                            .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+                    Pedido nuevoCarrito = new Pedido(usuario, "CARRITO");
+                    return pedidoRepository.save(nuevoCarrito);
+                });
     }
 
-    public Pedido crearPedido(Usuario usuario) {
-       
-        Pedido pedido = new Pedido();
-        pedido.setUsuario(usuario);
-        return pedidoRepository.save(pedido);
+    public Pedido agregarProducto(Long usuarioId, Long comicId, int cantidad) {
+        Pedido carrito = obtenerCarrito(usuarioId);
+        Comic comic = comicRepository.findById(comicId)
+                .orElseThrow(() -> new EntityNotFoundException("Comic no encontrado"));
+
+        if (comic.getStock() < cantidad) {
+            throw new IllegalArgumentException("No hay suficiente stock disponible");
+        }
+
+        carrito.agregarProducto(comic, cantidad);
+        return pedidoRepository.save(carrito);
     }
 
-    public Pedido agregarProducto(Long pedidoId, Long productoId, int cantidad) {
-        Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElseThrow(() -> new EntityNotFoundException("Pedido no encontrado"));
-        Comic comic = comicService.obtenerComicPorId(productoId);
-        pedido.agregarProducto(comic, cantidad);
-        return pedidoRepository.save(pedido);
+    public Pedido actualizarCantidad(Long usuarioId, Long comicId, int cantidad) {
+        Pedido carrito = obtenerCarrito(usuarioId);
+        Comic comic = comicRepository.findById(comicId)
+                .orElseThrow(() -> new EntityNotFoundException("Comic no encontrado"));
+
+        carrito.actualizarProducto(comic, cantidad);
+        return pedidoRepository.save(carrito);
     }
 
-    public Pedido eliminarProducto(Long pedidoId, Long productoId) {
-        Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElseThrow(() -> new EntityNotFoundException("Pedido no encontrado"));
-        Comic comic = comicService.obtenerComicPorId(productoId);
-        pedido.eliminarProducto(comic);
-        return pedidoRepository.save(pedido);
+    public Pedido confirmarPedido(Long usuarioId) {
+        Pedido carrito = obtenerCarrito(usuarioId);
+        carrito.confirmarPedido();
+        return pedidoRepository.save(carrito);
     }
 
-    public Pedido confirmarPedido(Long pedidoId) {
-        Pedido pedido = pedidoRepository.findById(pedidoId)
-                .orElseThrow(() -> new EntityNotFoundException("Pedido no encontrado"));
-        pedido.confirmarPedido();
-        return pedidoRepository.save(pedido);
+    public List<Pedido> obtenerPedidosConfirmados(Long usuarioId) {
+        return pedidoRepository.findByUsuarioIdAndEstadoOrderByIdDesc(usuarioId, "CONFIRMADO");
     }
 }
+

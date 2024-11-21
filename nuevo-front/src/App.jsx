@@ -9,8 +9,10 @@ import PointsPage from './pantallas/PointsPage';
 import ProductDetail from './pantallas/ProductDetailPage';
 import UserProfile from './pantallas/UserProfile';
 
+
 function App() {
   return (
+   
     <Router>
       <Routes>
         <Route path="/" element={<InicioSesion/>}/>
@@ -21,7 +23,7 @@ function App() {
         <Route  path='/misDatos' element={<UserProfile/>}/>
       </Routes>
     </Router>
-   
+    
   );
 }
 
