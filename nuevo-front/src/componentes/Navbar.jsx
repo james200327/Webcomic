@@ -9,7 +9,7 @@ import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
 
-export function Navbar({setSearchTerm}) {
+export function Navbar({setSearchTerm, setSelectedGenre}) {
   const [carrito, setCarrito] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -117,12 +117,13 @@ export function Navbar({setSearchTerm}) {
             </button>
           </div>
 
-          <div className="navbar-search">
-            <select className="search-category">
-              <option value="all">Todo el catálogo</option>
-              <option value="comics">Comics</option>
-              <option value="manga">Manga</option>
-            </select>
+          <div> 
+          <select className="search-category"onChange={(e) => setSelectedGenre(e.target.value)}>
+            <option value="all">Todo el catálogo</option>
+            <option value="comics">Comics</option>
+            <option value="manga">Manga</option>
+              </select>
+
             <input type="text" placeholder="Buscar" className="search-input" onChange={(e) => setSearchTerm(e.target.value)}/>
             <button className="search-button" >
               <i className="fas fa-search"></i>

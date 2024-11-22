@@ -11,6 +11,7 @@ const MySwal = withReactContent(Swal);
 
 const MainPage = () => {
     
+    const [selectedGenre, setSelectedGenre] = useState("all"); 
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
     const [nuevoComic, setNuevoComic] = useState({
@@ -97,11 +98,18 @@ const MainPage = () => {
         setNuevoComic({ ...nuevoComic, imagen: file });
     };
 
-    const filteredComics = comic.filter(c => {
+    /*const filteredComics = comic.filter(c => {
         const match = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
         console.log(`Filtrando cómic "${c.titulo}":`, match); // Verificar filtro
         return match;
+    });*/
+
+    const filteredComics = comic.filter(c => {
+        const genreMatch = selectedGenre === "all" || c.genero.toLowerCase().includes(selectedGenre.toLowerCase());
+        const searchMatch = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
+        return genreMatch && searchMatch;
     });
+    
 
     const manejoEditarComic = async (comicEdit) => {
         const { value: formValues } = await MySwal.fire({
@@ -192,7 +200,7 @@ const MainPage = () => {
                 </div>
             )}
 
-            <Navbar setSearchTerm={setSearchTerm}/>
+            <Navbar setSearchTerm={setSearchTerm} setSelectedGenre={setSelectedGenre}/>
             
             <div className="MainPage">
 
