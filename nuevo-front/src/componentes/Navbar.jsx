@@ -98,7 +98,9 @@ export function Navbar({setSearchTerm}) {
         if (userId) fetchCarrito();
       }, [userId]);
 
-    console.log(carrito);
+    const handleCheckout = () => {
+      redirect('/tramitarPedido');
+    };
 
   return (
     <>
@@ -200,9 +202,9 @@ export function Navbar({setSearchTerm}) {
         <div className="cart-total">
           <h3>Total: {total} puntos</h3>
         </div>
-        {/* <button className="checkout-btn" onClick={handleCheckout}>
+        <button className="checkout-btn" onClick={handleCheckout}>
           Tramitar Pedido
-        </button> */}
+        </button>
       </div>
 
       
