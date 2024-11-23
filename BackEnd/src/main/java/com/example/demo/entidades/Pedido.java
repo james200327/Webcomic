@@ -87,6 +87,8 @@ public class Pedido {
         });
     }
 
+    
+
     private void recalcularTotal() {
         this.total = items.stream().mapToDouble(item -> item.getPrecio() * item.getCantidad()).sum();
     }
