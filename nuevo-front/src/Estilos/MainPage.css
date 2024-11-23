@@ -111,3 +111,71 @@ flex-direction: column;
     -webkit-background-clip: text;
     font-size: 1.5rem;
 }
+
+
+/* Contenedor del formulario */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre los campos */
+}
+
+/* Estilo para los labels */
+.custom-label {
+    text-align: left; /* Alineación a la izquierda */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color del texto */
+    margin-bottom: 5px; /* Espacio entre el label y el input */
+}
+
+/* Estilo para los inputs */
+.custom-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Estilo para el textarea */
+.custom-textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+    resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* Estilo para el popup */
+.custom-popup {
+    background-color: #fafafa;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* Estilo para el título */
+.custom-title {
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Botón confirmar */
+.custom-confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Botón cancelar */
+.custom-cancel-button {
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+

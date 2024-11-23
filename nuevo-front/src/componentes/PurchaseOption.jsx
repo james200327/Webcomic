@@ -1,27 +1,37 @@
 // src/components/PurchaseOption.js
-import Swal from 'sweetalert2';
+import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
 import React from 'react';
 
-const MySwal = withReactContent(Swal);
+const MySwalInstance = withReactContent(MySwal);
 
 const PurchaseOption = ({ points, price, icon }) => {
     const handlePurchase = async () => {
-        const { value: formValues } = await MySwal.fire({
+        const { value: formValues } = await MySwalInstance.fire({
             title: `Comprar ${points} puntos por ${price}€`,
             html: `
-                <label>Número de Tarjeta</label>
-                <input id="numeroTarjeta" class="swal2-input" placeholder="1234 5678 9123 4567">
-                <label>Fecha de Expiración (MM/YY)</label>
-                <input id="fechaExpiracion" class="swal2-input" placeholder="MM/YY">
-                <label>CVV</label>
-                <input id="cvv" class="swal2-input" type="password" maxlength="3">
+                <div class="form-container">
+                    <label for="numeroTarjeta" class="custom-label">Número de Tarjeta</label>
+                    <input id="numeroTarjeta" class="swal2-input custom-input" placeholder="1234 5678 9123 4567">
+                    
+                    <label for="fechaExpiracion" class="custom-label">Fecha de Expiración (MM/YY)</label>
+                    <input id="fechaExpiracion" class="swal2-input custom-input" placeholder="MM/YY">
+                    
+                    <label for="cvv" class="custom-label">CVV</label>
+                    <input id="cvv" class="swal2-input custom-input" type="password" maxlength="3">
+                </div>
             `,
             focusConfirm: false,
             showCancelButton: true,
             confirmButtonText: 'Pagar',
             cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
             preConfirm: () => {
                 return {
                     numeroTarjeta: document.getElementById('numeroTarjeta').value,
@@ -44,7 +54,7 @@ const PurchaseOption = ({ points, price, icon }) => {
                     `http://localhost:8080/api/usuarios/${localStorage.getItem('userId')}/comprar-puntos?${params.toString()}`
                 );
 
-                MySwal.fire({
+                MySwalInstance.fire({
                     title: 'Compra Exitosa',
                     text: response.data,
                     icon: 'success',
@@ -54,7 +64,7 @@ const PurchaseOption = ({ points, price, icon }) => {
 
                 // Opcional: recargar puntos del usuario desde el backend
             } catch (error) {
-                MySwal.fire({
+                MySwalInstance.fire({
                     title: 'Error en la compra',
                     text: error.response?.data || 'Algo salió mal',
                     icon: 'error',
@@ -63,6 +73,7 @@ const PurchaseOption = ({ points, price, icon }) => {
             }
         }
     };
+
     return (
         <div className="purchase-option">
             <div className="points-icon">

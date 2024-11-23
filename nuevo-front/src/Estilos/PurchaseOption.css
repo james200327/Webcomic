@@ -1,0 +1,59 @@
+/* Contenedor del formulario */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre filas */
+}
+
+/* Estilo para los labels */
+.custom-label {
+    text-align: left; /* Alineación a la izquierda */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color del texto */
+    margin-bottom: 5px; /* Espaciado debajo del label */
+}
+
+/* Estilo para los inputs */
+.custom-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Estilo para el popup */
+.custom-popup {
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Estilo para el título */
+.custom-title {
+    color: #4CAF50;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Botón de confirmación */
+.custom-confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Botón de cancelar */
+.custom-cancel-button {
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
