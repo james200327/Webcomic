@@ -41,6 +41,8 @@ const InicioSesion = () => {
       localStorage.setItem("role", role);
       localStorage.setItem("userId", userId);
       // Mostrar un SweetAlert en función del rol del usuario
+
+      
       if (role === "ADMIN") {
           MySwal.fire({
               title: 'Inicio de sesión exitoso',

@@ -57,10 +57,19 @@ public class PedidoController {
         return ResponseEntity.ok(carrito);
     }
 
-    @PostMapping("/usuario/{usuarioId}/confirmar")
-    public ResponseEntity<Pedido> confirmarPedido(@PathVariable Long usuarioId) {
-        Pedido pedido = pedidoService.confirmarPedido(usuarioId);
-        return ResponseEntity.ok(pedido);
+    @PostMapping("/{pedidoId}/confirmar")
+    public ResponseEntity<?> confirmarPedido(@PathVariable Long pedidoId) {
+        try {
+            // Llama al servicio para confirmar el pedido
+            Pedido pedido = pedidoService.confirmarPedido(pedidoId);
+            return ResponseEntity.ok(pedido);
+        } catch (IllegalStateException e) {
+            // Maneja el error de puntos insuficientes
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            // Maneja el caso de que el pedido no exista
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping("/usuario/{usuarioId}/confirmados")

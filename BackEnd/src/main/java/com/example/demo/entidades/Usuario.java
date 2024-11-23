@@ -21,7 +21,7 @@ public class Usuario {
 	private String email;
 	private LocalDate fecha_registro;
 	private String roles;
-	private int puntos;
+	private double puntos;
 	
 	@Embedded
 	private Direccion direccion;
@@ -87,11 +87,11 @@ public class Usuario {
 		this.direccion = direccion;
 	}
 
-	public int getPuntos() {
+	public double getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(double puntos) {
         this.puntos = puntos;
     }
 	

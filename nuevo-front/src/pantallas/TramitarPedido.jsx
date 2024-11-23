@@ -2,16 +2,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../Estilos/TramitarPedido.css'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const MySwal = withReactContent(Swal);
 export default function TramitarPedido() {
     const [carrito, setCarrito] = useState([]);
     const [total, setTotal] = useState(0);
     const [form, setForm] = useState({ nombre: '', email: '', direccion: '' });
     const userId = localStorage.getItem('userId');
     const navigate = useNavigate();
-
+    const [idPedido, setIdPedido] = useState([]);
     // Obtener el carrito desde el backend
+    const obtenerIdPedido = async () => {
+        try {
+            const carritoResponse = await axios.get(`http://localhost:8080/api/pedidos/usuario/${userId}/carrito`);
+            const idCarrito = carritoResponse.data.id;
+                setIdPedido(idCarrito); // Extrae el pedidoId
+                
+        } catch (error) {
+            console.error('Error al obtener el id pedido:', error);
+        }
+    }
+    
+    
     const fetchCarrito = async () => {
+      
         try {
             const response = await axios.get(`http://localhost:8080/api/pedidos/usuario/${userId}/carrito`);
             setCarrito(response.data.items || []);
@@ -33,17 +49,37 @@ export default function TramitarPedido() {
 
     const confirmarPedido = async () => {
         try {
-            await axios.post(`http://localhost:8080/api/pedidos/usuario/${userId}/confirmar`);
-            alert('Pedido confirmado');
-            navigate('/inicio');
+          
+          const response = await axios.post(`http://localhost:8080/api/pedidos/${idPedido}/confirmar`);
+          MySwal.fire({
+            title: 'Pedido confirmado',
+            text: 'Tu pedido ha sido realizado con éxito.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          });
+          // Redirigir al main page o vaciar el carrito
+          navigate('/inicio');
         } catch (error) {
+          if (error.response && error.response.status === 400) {
+            MySwal.fire({
+              title: 'Error',
+              text: error.response.data,
+              icon: 'error',
+              confirmButtonText: 'Aceptar',
+            });
+          } else {
             console.error('Error al confirmar el pedido:', error);
+          }
         }
-    };
+      };
 
     useEffect(() => {
+        obtenerIdPedido();
         fetchCarrito();
+        
     }, []);
+   
+    
 
     return (
         <div className="checkout">

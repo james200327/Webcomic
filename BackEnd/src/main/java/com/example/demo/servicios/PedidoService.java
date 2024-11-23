@@ -61,10 +61,22 @@ public class PedidoService {
         return pedidoRepository.save(carrito);
     }
 
-    public Pedido confirmarPedido(Long usuarioId) {
-        Pedido carrito = obtenerCarrito(usuarioId);
-        carrito.confirmarPedido();
-        return pedidoRepository.save(carrito);
+    public Pedido confirmarPedido(Long pedidoId) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new EntityNotFoundException("Pedido no encontrado"));
+    
+        Usuario usuario = pedido.getUsuario();
+        if (usuario.getPuntos() < pedido.getTotal()) {
+            throw new IllegalStateException("Puntos insuficientes para completar el pedido");
+        }
+    
+        // Resta los puntos del usuario
+        usuario.setPuntos(usuario.getPuntos() - pedido.getTotal());
+        usuarioRepository.save(usuario);
+    
+        // Actualiza el estado del pedido
+        pedido.setEstado("CONFIRMADO");
+        return pedidoRepository.save(pedido);
     }
 
     public List<Pedido> obtenerPedidosConfirmados(Long usuarioId) {
