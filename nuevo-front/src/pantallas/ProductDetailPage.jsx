@@ -70,7 +70,7 @@ export default function ProductDetailPage({}) {
                             <span>{product.precio}</span>
                             <span><img src={InfinityPoints} alt="" /></span>
                         </div>
-                        <button onClick={añadirAlCarrito}>Añadir al carrito</button>
+                        <button className='add-to-card' onClick={añadirAlCarrito}>Añadir al carrito</button>
                         {/* <div className="delivery-info">{product.autor}</div> */}
                     </div>
                 </div>
