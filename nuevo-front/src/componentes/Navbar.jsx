@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from 'react';
 //import { Link } from 'react-router-dom'; // Importa el componente Link
-import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
 
 import lupa from '../Imagenes/lupita.png';
 import logouser from '../Imagenes/logoUsaurio.png';

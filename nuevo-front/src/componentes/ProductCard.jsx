@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Estilos/ProductCard.css';
-import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
 import InfinityComics from '../Imagenes/logo.png';
 export function ProductCard({ comic, image, onDelete, isAdmin, onEdit }) {
   const navigate = useNavigate();
