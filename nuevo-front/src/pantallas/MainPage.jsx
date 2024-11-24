@@ -135,6 +135,17 @@ const MainPage = () => {
                     <textarea id="descripcion" class="swal2-textarea custom-textarea" placeholder="Descripción">${comicEdit.descripcion}</textarea>
                 </div>
             `,
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    titulo: document.getElementById('titulo').value,
+                    autor: document.getElementById('autor').value,
+                    genero: document.getElementById('genero').value,
+                    precio: document.getElementById('precio').value,
+                    stock: document.getElementById('stock').value,
+                    descripcion: document.getElementById('descripcion').value
+                }
+            },
             showCancelButton: true,
             confirmButtonText: 'Guardar',
             cancelButtonText: 'Cancelar',
