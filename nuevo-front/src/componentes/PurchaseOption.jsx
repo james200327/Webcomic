@@ -3,6 +3,7 @@ import MySwal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import axios from 'axios';
 import React from 'react';
+import '../Estilos/PurchaseOption.css'
 
 const MySwalInstance = withReactContent(MySwal);
 
@@ -76,11 +77,11 @@ const PurchaseOption = ({ points, price, icon }) => {
 
     return (
         <div className="purchase-option">
+            <div className="points-price">{price}€</div>
             <div className="points-icon">
                 <img src={icon} alt="Points Icon" />
             </div>
             <div className="points">{points} Puntos</div>
-            <div className="price">{price}€</div>
             <button className="buy-button" onClick={handlePurchase}>Comprar</button>
         </div>
     );

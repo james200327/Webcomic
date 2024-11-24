@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../Estilos/ProductDetailPage.css';
 import { Navbar } from '../componentes/Navbar';
-import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
 import { useNavigate } from 'react-router-dom';
 
 export default function ProductDetailPage({}) {

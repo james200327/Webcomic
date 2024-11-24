@@ -33,6 +33,10 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
     redirect("/inicio");
   }
 
+  const irUserProfile = () =>{
+    redirect("/UserProfile");
+  }
+
   const [puntos, setPuntos] = useState(0);
 
     const userId = localStorage.getItem("userId"); // Asegúrate de que el ID del usuario esté guardado
@@ -117,7 +121,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
             </button>
           </div>
 
-          <div> 
+          <div className='navbar-search'> 
           <select className="search-category"onChange={(e) => setSelectedGenre(e.target.value)}>
             <option value="all">Todo el catálogo</option>
             <option value="comics">Comics</option>
@@ -131,7 +135,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
           </div>
 
           <div className="navbar-links">
-            <button href="/mi-cuenta" className="navbar-link">
+            <button onClick={irUserProfile} className="navbar-link">
               
               <i className="fas fa-user"></i> Mi cuenta
             </button>
