@@ -174,9 +174,10 @@ const UserProfile = () => {
             </div>
 
 
-            <div>
+            <div className="userprofile-pedidos">
+                <h2>Mis pedidos</h2>
                 {comics.length > 0 ? (
-                    <div>
+                    <div className="pedidos-items">
                         {comics.map((pedido) => (
                             /*Div donde se muestra el pedido id y el precio total del pedido*/
                             <div key={pedido.id} className="pedido-card">

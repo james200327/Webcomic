@@ -177,17 +177,18 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
       <div className={`sidebar-right ${isCartOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={toggleCart}>X</button>
         <h2>Mi Cesta</h2>
-        <ul className="cart-list">
+        <div className="cart-list">
           {carrito.map((item) => (
-            <li key={item.comic.id} className="cart-item">
+            <div key={item.comic.id} className="cart-item">
               <img src={`http://localhost:8080${item.comic.imagenUrl}`} alt={item.comic.titulo} className='imagen-cart'/>
               <div className="cart-details">
                 <h4>{item.comic.titulo}</h4>
-                <p>{item.comic.precio} puntos</p>
+                <p>{item.comic.precio} <img src={InfinityPoints} alt="" /></p>
                 <div className="cart-quantity">
                   <button
                     onClick={() => updateCantidad(item.comic.id, item.cantidad - 1)}
                     disabled={item.cantidad === 1}
+                     className='ope-btn'
                   >
                     -
                   </button>
@@ -195,15 +196,17 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
                   <button
                     onClick={() => updateCantidad(item.comic.id, item.cantidad + 1)}
                     disabled={item.cantidad >= item.comic.stock}
+                    className='ope-btn'
                   >
                     +
                   </button>
+                  <button className="remove-btn" onClick={() => removeFromCart(item.comic.id)}>🗑️</button>
                 </div>
               </div>
-              <button className="remove-btn" onClick={() => removeFromCart(item.comic.id)}>X</button>
-            </li>
+             
+            </div>
           ))}
-        </ul>
+        </div>
         <div className="cart-total">
           <h3>Total: {total} puntos</h3>
         </div>
