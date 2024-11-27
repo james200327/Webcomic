@@ -4,6 +4,14 @@ import '../Estilos/inicioSesion.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Imagenes/logo.png';
+<<<<<<< HEAD
+=======
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
+const MySwal = withReactContent(Swal);
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 
 const InicioSesion = () => {
 
@@ -30,6 +38,7 @@ const InicioSesion = () => {
         password: datos.password
       });
 
+<<<<<<< HEAD
       const role = response.data;  // Aquí recibes directamente "ADMIN" o "USER"
       console.log(role);
     if (role === "ADMIN") {
@@ -42,6 +51,33 @@ const InicioSesion = () => {
         // Redirigir al usuario a la página de visualización sin el formulario
     }
       // Si el inicio de sesión es exitoso, redirige a la página principal
+=======
+      const { role, userId } = response.data;
+
+      // Guardar role y userId en localStorage
+      localStorage.setItem("role", role);
+      localStorage.setItem("userId", userId);
+      // Mostrar un SweetAlert en función del rol del usuario
+
+      
+      if (role === "ADMIN") {
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como administrador',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
+      } else if (role === "USER") {
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como usuario',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
+      }
+  
+     
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
       redirect('/inicio');  // Redirige a la página principal
 
     } catch (error) {

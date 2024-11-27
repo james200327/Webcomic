@@ -55,4 +55,20 @@ public class UsuarioService {
                 
 
 	}
+<<<<<<< HEAD
+=======
+
+	public Usuario cargarUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + id));
+    }
+
+	public Usuario actualizarPuntos(Long id, int puntos) {
+        Usuario usuario = cargarUsuarioPorId(id);
+        usuario.setPuntos(usuario.getPuntos() + puntos);
+        return usuarioRepository.save(usuario);
+    }
+
+	
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 }

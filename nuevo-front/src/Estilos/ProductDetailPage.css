@@ -94,7 +94,11 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 .add-to-cart {
+=======
+.add-to-card {
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
     border-radius: 10px;
     font-size: 1rem;
     font-weight: bold;
@@ -132,3 +136,7 @@
 .pros-cons li {
     font-size: 14px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)

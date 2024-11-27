@@ -2,6 +2,10 @@ package com.example.demo.entidades;
 
 import java.util.Date;
 
+<<<<<<< HEAD
+=======
+import jakarta.persistence.Column;
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +25,12 @@ public class Comic {
 	private double precio;
 	private int stock;
 	private String imagenUrl;
+<<<<<<< HEAD
 
+=======
+	@Column(length = 1000)
+	private String descripcion;
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 	
 
 	//private Date fecha_publicacion;
@@ -31,7 +40,11 @@ public class Comic {
 	}
 
 	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
+<<<<<<< HEAD
 			String imagenUrl) {
+=======
+			String imagenUrl, String descripcion) {
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 		
 		this.id = id;
 		this.titulo = titulo;
@@ -40,9 +53,24 @@ public class Comic {
 		this.precio = precio;
 		this.stock = stock;
 		this.imagenUrl = imagenUrl;
+<<<<<<< HEAD
 		//this.fecha_publicacion = fecha_publicacion;
 	}
 
+=======
+		this.descripcion = descripcion;
+		//this.fecha_publicacion = fecha_publicacion;
+	}
+
+	public String getDescripcion(){
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion){
+		this.descripcion = descripcion;
+	}
+
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 	public Long getId() {
 		return id;
 	}

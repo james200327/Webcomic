@@ -21,6 +21,10 @@ public class Usuario {
 	private String email;
 	private LocalDate fecha_registro;
 	private String roles;
+<<<<<<< HEAD
+=======
+	private double puntos;
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 	
 	@Embedded
 	private Direccion direccion;
@@ -85,6 +89,17 @@ public class Usuario {
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
+<<<<<<< HEAD
+=======
+
+	public double getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(double puntos) {
+        this.puntos = puntos;
+    }
+>>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
 	
 	
 }
