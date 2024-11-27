@@ -33,14 +33,20 @@ flex-direction: column;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 .div-info-textarea{
     border-radius: 10px;
     text-align: center;
     padding: 0.5rem 1rem;
 }
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 .admin-div-info h2{
     text-align: center;
     color: orange;
@@ -50,10 +56,14 @@ flex-direction: column;
 .div-info-input{
     margin: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     padding: 0.5rem 1rem;
 =======
     padding: 0.5rem 2rem;
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+    padding: 0.5rem 2rem;
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     text-align: center;
     border-radius: 5px;
     border-color: #eee;
@@ -97,6 +107,7 @@ flex-direction: column;
     padding: 0 15px;
     text-align: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
     background-color: #fff;
     color: #FF6000;
     padding: 1.25rem; /* 20px -> 1.25rem */
@@ -106,6 +117,12 @@ flex-direction: column;
     padding: 1.25rem; /* 20px -> 1.25rem */
 
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+    background-color: #686868;
+    color: #FF6000;
+    padding: 1.25rem; /* 20px -> 1.25rem */
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 }
 
 .div-products {
@@ -126,7 +143,10 @@ flex-direction: column;
     font-size: 1.5rem;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 
 /* Contenedor del formulario */
@@ -238,4 +258,7 @@ flex-direction: column;
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

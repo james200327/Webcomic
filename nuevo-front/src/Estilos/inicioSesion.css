@@ -1,5 +1,6 @@
 .fm-section {
 <<<<<<< HEAD
+<<<<<<< HEAD
     max-width: 25rem; /* 400px / 16 = 25rem */
     margin: 0 auto;
     padding: 2rem 5rem; /* 8rem equivale a 128px, 5rem es más proporcional */
@@ -118,6 +119,20 @@
   background-color: white;
 }
 
+=======
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 25rem; /* Tamaño para pantallas grandes */
+  padding: 2rem 8rem; /* Espaciado para pantallas grandes */
+  border: 0.063rem solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0rem 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 /* Ajustes para tablets */
 @media (max-width: 768px) {
   .fm-section {
@@ -135,4 +150,7 @@
     border-radius: 0; /* Opcional: Quitar bordes redondeados en móviles */
   }
 }
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

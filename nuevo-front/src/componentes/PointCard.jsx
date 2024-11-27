@@ -2,6 +2,7 @@
 import React from 'react';
 import PurchaseOption from './PurchaseOption';
 <<<<<<< HEAD
+<<<<<<< HEAD
 //import './PointsSelection.css';
 
 const pointsOptions = [
@@ -16,13 +17,22 @@ import InfinityPoints from '../Imagenes/InfinityPoints.png';
 //import './PointsSelection.css';
 
 const pointsOptions = [
+=======
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
+//import './PointsSelection.css';
+
+const pointsOptions = [
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     { points: 475, price: 5, icon: InfinityPoints },
     { points: 1000, price: 10, icon: InfinityPoints },
     { points: 2050, price: 20, icon: InfinityPoints },
     { points: 3650, price: 35, icon: InfinityPoints },
     { points: 5350, price: 50, icon: InfinityPoints },
     { points: 11000, price: 100, icon: InfinityPoints }
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 ];
 
 const PointCard = () => {

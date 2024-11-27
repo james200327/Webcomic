@@ -3,9 +3,13 @@ package com.example.demo.entidades;
 import java.util.Date;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import jakarta.persistence.Column;
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+import jakarta.persistence.Column;
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,11 +30,16 @@ public class Comic {
 	private int stock;
 	private String imagenUrl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 	@Column(length = 1000)
 	private String descripcion;
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+	@Column(length = 1000)
+	private String descripcion;
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 	
 
 	//private Date fecha_publicacion;
@@ -41,10 +50,14 @@ public class Comic {
 
 	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			String imagenUrl) {
 =======
 			String imagenUrl, String descripcion) {
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+			String imagenUrl, String descripcion) {
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 		
 		this.id = id;
 		this.titulo = titulo;
@@ -54,6 +67,7 @@ public class Comic {
 		this.stock = stock;
 		this.imagenUrl = imagenUrl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		//this.fecha_publicacion = fecha_publicacion;
 	}
 
@@ -62,6 +76,12 @@ public class Comic {
 		//this.fecha_publicacion = fecha_publicacion;
 	}
 
+=======
+		this.descripcion = descripcion;
+		//this.fecha_publicacion = fecha_publicacion;
+	}
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 	public String getDescripcion(){
 		return descripcion;
 	}
@@ -70,7 +90,10 @@ public class Comic {
 		this.descripcion = descripcion;
 	}
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 	public Long getId() {
 		return id;
 	}

@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <<<<<<< HEAD
+<<<<<<< HEAD
   <React.StrictMode>
    
     <App/>
@@ -22,6 +23,13 @@ root.render(
 
   
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+  
+   
+    <App/>
+
+  
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 );
 
 // If you want to start measuring performance in your app, pass a function

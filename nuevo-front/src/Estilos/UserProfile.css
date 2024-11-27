@@ -47,8 +47,11 @@ p{
 .button-user:hover{
     background-color: #e0474c;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 }
 
 /*pedidos*/
@@ -125,5 +128,9 @@ p{
   .userprofile-pedidos::-webkit-scrollbar-thumb:hover {
     background-color: #888; /* Color al pasar el mouse */
   }
+<<<<<<< HEAD
   
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+  
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

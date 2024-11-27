@@ -5,13 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Imagenes/logo.png';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 
 const MySwal = withReactContent(Swal);
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 const InicioSesion = () => {
 
@@ -39,6 +45,7 @@ const InicioSesion = () => {
       });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       const role = response.data;  // Aquí recibes directamente "ADMIN" o "USER"
       console.log(role);
     if (role === "ADMIN") {
@@ -52,6 +59,8 @@ const InicioSesion = () => {
     }
       // Si el inicio de sesión es exitoso, redirige a la página principal
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
       const { role, userId } = response.data;
 
       // Guardar role y userId en localStorage
@@ -77,7 +86,10 @@ const InicioSesion = () => {
       }
   
      
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
       redirect('/inicio');  // Redirige a la página principal
 
     } catch (error) {

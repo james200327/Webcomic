@@ -28,6 +28,7 @@ public class ComicService {
 				.orElseThrow(() -> new EntityNotFoundException("Comic no encontrado"));
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		comicExistente.setTitulo(comic.getTitulo());
 		comicExistente.setAutor(comic.getAutor());
 		comicExistente.setGenero(comic.getGenero());
@@ -35,6 +36,8 @@ public class ComicService {
 		comicExistente.setStock(comic.getStock());
 		//comicExistente.setFecha_publicacion(comic.getFecha_publicacion());
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 				if (comic.getTitulo() != null && !comic.getTitulo().isEmpty()) {
 					comicExistente.setTitulo(comic.getTitulo());
 				}
@@ -61,7 +64,10 @@ public class ComicService {
 					comicExistente.setDescripcion(comic.getDescripcion());
 				}
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 		
 		return comicRepository.save(comicExistente);
 	}

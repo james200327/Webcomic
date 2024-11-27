@@ -1,5 +1,6 @@
 /* src/App.css */
 <<<<<<< HEAD
+<<<<<<< HEAD
 .App {
     text-align: center;
     background-color: #fff;
@@ -10,6 +11,12 @@
     background-color: #fff;
     color: orange;
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+.PointsPage {
+    text-align: center;
+    background-color: #fff;
+    color: orange;
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     padding: 1.25rem; /* 20px -> 1.25rem */
 }
 
@@ -26,6 +33,7 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* src/components/PurchaseOption.css */
 .purchase-option {
@@ -74,6 +82,15 @@
 }
 
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+.points-options{
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a una nueva fila si no hay espacio suficiente */
+    gap: 1rem; /* Espacio entre los elementos */
+    justify-content: space-between;
+}
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 /* src/components/PointsSelection.css */
 .points-selection {
@@ -86,7 +103,10 @@
     justify-content: center;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 
 
@@ -105,4 +125,7 @@
         max-width: 100%;
     }
 }
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

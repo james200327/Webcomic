@@ -2,9 +2,12 @@ import { Navbar } from "../componentes/Navbar";
 import React from 'react';
 import { ProductCard } from "../componentes/ProductCard";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import ModifyComicPage from '../componentes/ModifyComicPage';
 =======
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 import '../Estilos/MainPage.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -14,11 +17,16 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 const MainPage = () => {
-
+    
+    const [selectedGenre, setSelectedGenre] = useState("all"); 
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
+<<<<<<< HEAD
     const [selectedComic, setSelectedComic] = useState(null);
 =======
 const MainPage = () => {
@@ -27,6 +35,8 @@ const MainPage = () => {
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     const [nuevoComic, setNuevoComic] = useState({
         titulo: '',
         autor: '',
@@ -79,10 +89,14 @@ const MainPage = () => {
             setComic(response.data);
             setmostrarFormComic(false); // Ocultar el formulario
 <<<<<<< HEAD
+<<<<<<< HEAD
             
 =======
 
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             MySwal.fire({
                 title: 'Comic añadido exitosamente',
                 icon: 'success',
@@ -94,10 +108,14 @@ const MainPage = () => {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         window.location.reload();
 =======
        
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+       
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     };
 
     const manejoBorrarComic = async (id) => {
@@ -105,23 +123,30 @@ const MainPage = () => {
             await axios.delete(`http://localhost:8080/api/comics/eliminar/${id}`);
             setComic(comic.filter((c) => c.id !== id));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             MySwal.fire({
                 title: 'Comic elimando',
                 icon: 'success',
                 confirmButtonText: 'Continuar'
               });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
         } catch (error) {
             console.error('Error al borrar el cómic:', error);
         }
     };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     const manejoModificarComic = async (id, updatedComicData) => {
         try {
@@ -136,22 +161,97 @@ const MainPage = () => {
 
 =======
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setNuevoComic({ ...nuevoComic, imagen: file });
     };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     const filteredComics = comic.filter(c => {
+=======
+    /*const filteredComics = comic.filter(c => {
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
         const match = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
         console.log(`Filtrando cómic "${c.titulo}":`, match); // Verificar filtro
         return match;
-    });
+    });*/
 
-    const handleModifyClick = (comic) => {
-        setSelectedComic(comic);
+    const filteredComics = comic.filter(c => {
+        const genreMatch = selectedGenre === "all" || c.genero.toLowerCase().includes(selectedGenre.toLowerCase());
+        const searchMatch = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
+        return genreMatch && searchMatch;
+    });
+    
+
+    const manejoEditarComic = async (comicEdit) => {
+        const { value: formValues } = await MySwal.fire({
+            title: 'Modificar Comic',
+            html: `
+                <div class="form-container">
+                    <label for="titulo" class="custom-label">Titulo:</label>
+                    <input id="titulo" class="swal2-input custom-input" placeholder="Título" value="${comicEdit.titulo}">
+                    
+                    <label for="autor" class="custom-label">Autor:</label>
+                    <input id="autor" class="swal2-input custom-input" placeholder="Autor" value="${comicEdit.autor}">
+                    
+                    <label for="genero" class="custom-label">Genero:</label>
+                    <input id="genero" class="swal2-input custom-input" placeholder="Genero" value="${comicEdit.genero}">
+                    
+                    <label for="precio" class="custom-label">Precio:</label>
+                    <input id="precio" class="swal2-input custom-input" placeholder="Precio" value="${comicEdit.precio}">
+                    
+                    <label for="stock" class="custom-label">Stock:</label>
+                    <input id="stock" class="swal2-input custom-input" placeholder="Stock" value="${comicEdit.stock}">
+                    
+                    <label for="descripcion" class="custom-label">Descripcion:</label>
+                    <textarea id="descripcion" class="swal2-textarea custom-textarea" placeholder="Descripción">${comicEdit.descripcion}</textarea>
+                </div>
+            `,
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    titulo: document.getElementById('titulo').value,
+                    autor: document.getElementById('autor').value,
+                    genero: document.getElementById('genero').value,
+                    precio: document.getElementById('precio').value,
+                    stock: document.getElementById('stock').value,
+                    descripcion: document.getElementById('descripcion').value
+                }
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            }
+        });
+        
+        
+
+        if (formValues) {
+            try {
+                const updatedComic = { ...comicEdit, ...formValues };
+                console.log("Datos a actualizar:", updatedComic);
+                await axios.put(`http://localhost:8080/api/comics/modificar/${comicEdit.id}`, updatedComic);
+                setComic(comic.map((c) => (c.id === comicEdit.id ? updatedComic : c)));
+                MySwal.fire({
+                    title: 'Comic modificado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                });
+            } catch (error) {
+                console.error('Error al modificar el cómic:', error);
+            }
+        }
     };
 
+<<<<<<< HEAD
     const handleSaveChanges = (updatedComic) => {
         setComic(comic.map(comic => comic.id === updatedComic.id ? updatedComic : comic));
         setSelectedComic(null);
@@ -241,6 +341,9 @@ const MainPage = () => {
 
    
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+   
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
     return (
         <>
@@ -281,10 +384,14 @@ const MainPage = () => {
             )}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Navbar setSearchTerm={setSearchTerm}/>
 =======
             <Navbar setSearchTerm={setSearchTerm} setSelectedGenre={setSelectedGenre}/>
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+            <Navbar setSearchTerm={setSearchTerm} setSelectedGenre={setSelectedGenre}/>
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             
             <div className="MainPage">
 
@@ -300,6 +407,7 @@ const MainPage = () => {
                         rating={comic.rating} 
                         reviews={comic.reviews} 
                         stock={comic.stock}
+<<<<<<< HEAD
 <<<<<<< HEAD
                         onDelete={() => manejoBorrarComic(comic.id)} // Función de eliminación
                         isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
@@ -323,6 +431,14 @@ const MainPage = () => {
                          ))}
                 </div>
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+                        onDelete={() => manejoBorrarComic(comic.id)}
+                        onEdit={() => manejoEditarComic(comic)} // Función de eliminación
+                            isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
+                        />
+                         ))}
+                </div>
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             </div>
         </>
     );
@@ -365,7 +481,11 @@ export default MainPage;
         </>
     )
 <<<<<<< HEAD
+<<<<<<< HEAD
 }*/}
 =======
 }*/}
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+}*/}
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

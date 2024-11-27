@@ -1,9 +1,13 @@
 .product-card {
 <<<<<<< HEAD
+<<<<<<< HEAD
   border: 0.063rem solid #ddd; /* 1px -> 0.063rem */
 =======
   border: 0.063rem solid #e0474c; /* 1px -> 0.063rem */
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+  border: 0.063rem solid #e0474c; /* 1px -> 0.063rem */
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
   border-radius: 0.5rem; /* 8px -> 0.5rem */
   padding: 1.5rem; /* 10px -> 1.5rem (ajustado a 1.5rem para coherencia) */
   text-align: center;
@@ -14,9 +18,13 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   background-color: #fff;
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+  background-color: #fff;
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 }
 
 .product-card:hover {
@@ -82,7 +90,10 @@
   align-items: center;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 .product-card-delete{
     background-color: orange;
@@ -109,4 +120,7 @@
 .product-card-edit{
   background-color: #e0474c;
 }
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7

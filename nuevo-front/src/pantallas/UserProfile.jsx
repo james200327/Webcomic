@@ -6,17 +6,22 @@ import '../Estilos/UserProfile.css';
 const UserProfile = () => {
     const navigate = useNavigate();
 <<<<<<< HEAD
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     // Estado para almacenar los datos del usuario
     const [userData, setUserData] = useState({
-        nombre: "",
+        username: "",
         email: "",
-        contraseña: "",
+        contrasenia: "",
         calle: "",
-        ciudad: "",
-        codigoPostal: ""
+        codigoPostal: "",
+        ciudad: ""
     });
 
+<<<<<<< HEAD
 =======
 
     // Estado para almacenar los datos del usuario
@@ -29,19 +34,27 @@ const UserProfile = () => {
         ciudad: ""
     });
 
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     // Estado para saber si estamos editando o no
     const [isEditing, setIsEditing] = useState(false);
     const [comics, setComics] = useState([]);
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     // Llama al backend para obtener los datos del usuario cuando se monta el componente
     useEffect(() => {
         const fetchUserData = async () => {
             try {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 const response = await axios.get('http://localhost:8080/api/usuarios/perfil');
                 setUserData(response.data);
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
                 const response = await axios.get(`http://localhost:8080/api/usuarios/${localStorage.getItem('userId')}`);
                 const user = response.data;  // Asegúrate de que 'usuario' es la propiedad correcta en la respuesta
 
@@ -54,15 +67,34 @@ const UserProfile = () => {
                     ciudad: user.direccion.ciudad,  // Ciudad de la dirección
                     codigoPostal: user.direccion.codigoPostal  // Código postal de la dirección
                 });
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             } catch (error) {
                 console.error('Error al obtener los datos del usuario:', error);
             }
         };
 <<<<<<< HEAD
+<<<<<<< HEAD
         
+=======
+
+        const fetchListaComics = async () => {
+            try {
+                const listaComics = await axios.get(`http://localhost:8080/api/pedidos/usuario/${localStorage.getItem('userId')}/confirmados`)
+                setComics(listaComics.data)
+
+            } catch (error) {
+                console.error('Error al obtener el listado de comics:', error);
+            }
+        }
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
         fetchUserData();
+        fetchListaComics();
     }, []);
+<<<<<<< HEAD
 =======
 
         const fetchListaComics = async () => {
@@ -78,6 +110,8 @@ const UserProfile = () => {
         fetchUserData();
         fetchListaComics();
     }, []);
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
     console.log(comics)
     // Maneja el cambio de valores en los inputs del formulario
     const handleInputChange = (e) => {
@@ -99,43 +133,116 @@ const UserProfile = () => {
             console.error('Error al actualizar los datos del usuario:', error);
         }
     };
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
     return (
         <div className="div-user">
             <h2>Perfil de Usuario</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <div className="main-div-info">
                 <div className="div-info">
                     <strong>Nombre:</strong>
                     <p>{userData.nombre}</p>
+=======
+
+            {isEditing ? (
+                <form onSubmit={handleSubmit} className="form-edit">
+                    <div className="div-info">
+                        <strong>Nombre:</strong>
+                        <input
+                            type="text"
+                            name="nombre"
+                            value={userData.username}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="div-info">
+                        <strong>Email:</strong>
+                        <input
+                            type="email"
+                            name="email"
+                            value={userData.email}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="div-info">
+                        <strong>Contraseña:</strong>
+                        <input
+                            type="password"
+                            name="contraseña"
+                            value={userData.contraseña}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="div-info">
+                        <strong>Calle:</strong>
+                        <input
+                            type="text"
+                            name="calle"
+                            value={userData.calle}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="div-info">
+                        <strong>Ciudad:</strong>
+                        <input
+                            type="text"
+                            name="ciudad"
+                            value={userData.ciudad}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="div-info">
+                        <strong>Código Postal:</strong>
+                        <input
+                            type="text"
+                            name="codigoPostal"
+                            value={userData.codigoPostal}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <button type="submit" className="button-user">Guardar Cambios</button>
+                    <button type="button" className="button-user" onClick={() => setIsEditing(false)}>Cancelar</button>
+                </form>
+            ) : (
+                <div className="main-div-info">
+                    <div className="div-info">
+                        <strong>Nombre:</strong>
+                        <p>{userData.username}</p>
+                    </div>
+                    <div className="div-info">
+                        <strong>Email:</strong>
+                        <p>{userData.email}</p>
+                    </div>
+                    <div className="div-info">
+                        <strong>Contraseña:</strong>
+                        <p>{userData.contrasenia}</p>
+                    </div>
+                    <div className="div-info">
+                        <strong>Calle:</strong>
+                        <p>{userData.calle}</p>
+                    </div>
+                    <div className="div-info">
+                        <strong>Ciudad:</strong>
+                        <p>{userData.ciudad}</p>
+                    </div>
+                    <div className="div-info">
+                        <strong>Código Postal:</strong>
+                        <p>{userData.codigoPostal}</p>
+                    </div>
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
                 </div>
-                <div className="div-info">
-                    <strong>Email:</strong>
-                    <p>{userData.email}</p>
-                </div>
-                <div className="div-info">
-                    <strong>Contraseña:</strong>
-                    <p>{userData.contraseña}</p>
-                </div>
-                <div className="div-info">
-                    <strong>Calle:</strong>
-                    <p>{userData.calle}</p>
-                </div>
-                <div className="div-info">
-                    <strong>Ciudad:</strong>
-                    <p>{userData.ciudad}</p>
-                </div>
-                <div className="div-info">
-                    <strong>Código Postal:</strong>
-                    <p>{userData.codigoPostal}</p>
-                </div>
-            </div>
-              
+            )}
+
             <div className="div-buttons">
                 <button className="button-user" onClick={() => navigate('/inicio')}>Volver al Menú Principal</button>
-                <button className="button-user" onClick={() => navigate('/registro')}>Modificar Datos</button>
+                <button className="button-user" onClick={() => setIsEditing(true)}>Modificar Datos</button>
             </div>
+<<<<<<< HEAD
 =======
 
             {isEditing ? (
@@ -230,6 +337,8 @@ const UserProfile = () => {
                 <button className="button-user" onClick={() => navigate('/inicio')}>Volver al Menú Principal</button>
                 <button className="button-user" onClick={() => setIsEditing(true)}>Modificar Datos</button>
             </div>
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
 
             <div className="userprofile-pedidos">
@@ -258,7 +367,10 @@ const UserProfile = () => {
                 )}
             </div>
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
         </div>
     );
 };

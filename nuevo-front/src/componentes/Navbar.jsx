@@ -1,16 +1,24 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, { useState ,useEffect} from 'react';
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 //import { Link } from 'react-router-dom'; // Importa el componente Link
-import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
-import carrito from '../Imagenes/carrito.png';
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
+
 import lupa from '../Imagenes/lupita.png';
 import logouser from '../Imagenes/logoUsaurio.png';
+import axios from 'axios';
 import '../Estilos/Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
-export function Navbar({setSearchTerm}) {
+
+export function Navbar({setSearchTerm, setSelectedGenre}) {
+  const [carrito, setCarrito] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+<<<<<<< HEAD
 =======
 import React, { useState ,useEffect} from 'react';
 //import { Link } from 'react-router-dom'; // Importa el componente Link
@@ -29,6 +37,9 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+  const [total, setTotal] = useState(0);
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -49,7 +60,10 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
   const irUserProfile = () =>{
     redirect("/UserProfile");
   }
@@ -123,7 +137,10 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
       redirect('/tramitarPedido');
     };
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
   return (
     <>
       <header>
@@ -140,6 +157,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
           </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div className="navbar-search">
             <select className="search-category">
               <option value="all">Todo el catálogo</option>
@@ -147,6 +165,8 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
               <option value="manga">Manga</option>
             </select>
 =======
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
           <div className='navbar-search'> 
           <select className="search-category"onChange={(e) => setSelectedGenre(e.target.value)}>
             <option value="all">Todo el catálogo</option>
@@ -154,7 +174,10 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
             <option value="manga">Manga</option>
               </select>
 
+<<<<<<< HEAD
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             <input type="text" placeholder="Buscar" className="search-input" onChange={(e) => setSearchTerm(e.target.value)}/>
             <button className="search-button" >
               <i className="fas fa-search"></i>
@@ -163,16 +186,21 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
 
           <div className="navbar-links">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <button href="/mi-cuenta" className="navbar-link">
 =======
             <button onClick={irUserProfile} className="navbar-link">
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+            <button onClick={irUserProfile} className="navbar-link">
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
               
               <i className="fas fa-user"></i> Mi cuenta
             </button>
             <button onClick={toggleCart} className="navbar-link">
     
               <i className="fas fa-shopping-cart"></i> Mi cesta
+<<<<<<< HEAD
 <<<<<<< HEAD
               <span className="cart-count">0</span>
             </button>
@@ -186,6 +214,13 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
               <img src={InfinityPoints} className='navbar-points-img' alt=""/>
               <span className='points-count'>{puntos}</span>
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+              <span className="cart-count">{carrito.length}</span>
+            </button>
+            <a href="/PagPuntos" className='navbar-link'>
+              <img src={InfinityPoints} className='navbar-points-img' alt=""/>
+              <span className='points-count'>{puntos}</span>
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
             </a>
           </div>
         </nav>
@@ -216,6 +251,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
       <div className={`sidebar-right ${isCartOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={toggleCart}>X</button>
         <h2>Mi Cesta</h2>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <ul className="category-list">
           <li>Producto 1</li>
@@ -267,6 +303,48 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
       
 
 >>>>>>> parent of a21eaebb (Merge branch 'main' of https://github.com/james200327/Webcomic)
+=======
+        <div className="cart-list">
+          {carrito.map((item) => (
+            <div key={item.comic.id} className="cart-item">
+              <img src={`http://localhost:8080${item.comic.imagenUrl}`} alt={item.comic.titulo} className='imagen-cart'/>
+              <div className="cart-details">
+                <h4>{item.comic.titulo}</h4>
+                <p>{item.comic.precio} <img src={InfinityPoints} alt="" /></p>
+                <div className="cart-quantity">
+                  <button
+                    onClick={() => updateCantidad(item.comic.id, item.cantidad - 1)}
+                    disabled={item.cantidad === 1}
+                     className='ope-btn'
+                  >
+                    -
+                  </button>
+                  <span>{item.cantidad}</span>
+                  <button
+                    onClick={() => updateCantidad(item.comic.id, item.cantidad + 1)}
+                    disabled={item.cantidad >= item.comic.stock}
+                    className='ope-btn'
+                  >
+                    +
+                  </button>
+                  <button className="remove-btn" onClick={() => removeFromCart(item.comic.id)}>🗑️</button>
+                </div>
+              </div>
+             
+            </div>
+          ))}
+        </div>
+        <div className="cart-total">
+          <h3>Total: {total} puntos</h3>
+        </div>
+        <button className="checkout-btn" onClick={handleCheckout}>
+          Tramitar Pedido
+        </button>
+      </div>
+
+      
+
+>>>>>>> 1c7a41697ae9ab51318e6bcf3efe2e2b8bcc96a7
       {/* Overlay para ambos sidebars */}
       <div 
         className={`overlay ${isMenuOpen || isCartOpen ? 'show' : ''}`} 
