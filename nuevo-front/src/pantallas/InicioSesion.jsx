@@ -4,6 +4,11 @@ import '../Estilos/inicioSesion.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../Imagenes/logo.png';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
+
+const MySwal = withReactContent(Swal);
 
 const InicioSesion = () => {
 
@@ -30,18 +35,31 @@ const InicioSesion = () => {
         password: datos.password
       });
 
-      const role = response.data;  // Aquí recibes directamente "ADMIN" o "USER"
-      console.log(role);
-    if (role === "ADMIN") {
-        localStorage.setItem("role", role);
-        alert("Inicio de sesión exitoso como administrador");
-        // Redirigir al administrador a la página con el formulario de agregar cómics
-    } else if (role === "USER") {
-        localStorage.setItem("role", role);
-        alert("Inicio de sesión exitoso como usuario");
-        // Redirigir al usuario a la página de visualización sin el formulario
-    }
-      // Si el inicio de sesión es exitoso, redirige a la página principal
+      const { role, userId } = response.data;
+
+      // Guardar role y userId en localStorage
+      localStorage.setItem("role", role);
+      localStorage.setItem("userId", userId);
+      // Mostrar un SweetAlert en función del rol del usuario
+
+      
+      if (role === "ADMIN") {
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como administrador',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
+      } else if (role === "USER") {
+          MySwal.fire({
+              title: 'Inicio de sesión exitoso',
+              text: 'Inicio de sesión como usuario',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
+      }
+  
+     
       redirect('/inicio');  // Redirige a la página principal
 
     } catch (error) {

@@ -1,7 +1,6 @@
 import { Navbar } from "../componentes/Navbar";
 import React from 'react';
 import { ProductCard } from "../componentes/ProductCard";
-import ModifyComicPage from '../componentes/ModifyComicPage';
 import '../Estilos/MainPage.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -10,12 +9,11 @@ import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
 
-
 const MainPage = () => {
-
+    
+    const [selectedGenre, setSelectedGenre] = useState("all"); 
     const [comic, setComic] = useState([]);
     const [mostrarFormComic, setmostrarFormComic] = useState(false);
-    const [selectedComic, setSelectedComic] = useState(null);
     const [nuevoComic, setNuevoComic] = useState({
         titulo: '',
         autor: '',
@@ -67,7 +65,7 @@ const MainPage = () => {
             const response = await axios.get('http://localhost:8080/api/comics/todos');
             setComic(response.data);
             setmostrarFormComic(false); // Ocultar el formulario
-            
+
             MySwal.fire({
                 title: 'Comic añadido exitosamente',
                 icon: 'success',
@@ -78,33 +76,20 @@ const MainPage = () => {
             console.error('Error al agregar el cómic:', error);
         }
 
-        window.location.reload();
+       
     };
 
     const manejoBorrarComic = async (id) => {
         try {
             await axios.delete(`http://localhost:8080/api/comics/eliminar/${id}`);
             setComic(comic.filter((c) => c.id !== id));
-
             MySwal.fire({
                 title: 'Comic elimando',
                 icon: 'success',
                 confirmButtonText: 'Continuar'
               });
-
         } catch (error) {
             console.error('Error al borrar el cómic:', error);
-        }
-    };
-
-    const manejoModificarComic = async (id, updatedComicData) => {
-        try {
-            await axios.put(`http://localhost:8080/api/comics/modificar/${id}`, updatedComicData);
-            
-            // Actualizar el estado de comics con el cómic modificado
-            setComic(comic.map(c => c.id === id ? { ...c, ...updatedComicData } : c));
-        } catch (error) {
-            console.error('Error al modificar el cómic:', error);
         }
     };
 
@@ -113,24 +98,85 @@ const MainPage = () => {
         setNuevoComic({ ...nuevoComic, imagen: file });
     };
 
-    const filteredComics = comic.filter(c => {
+    /*const filteredComics = comic.filter(c => {
         const match = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
         console.log(`Filtrando cómic "${c.titulo}":`, match); // Verificar filtro
         return match;
+    });*/
+
+    const filteredComics = comic.filter(c => {
+        const genreMatch = selectedGenre === "all" || c.genero.toLowerCase().includes(selectedGenre.toLowerCase());
+        const searchMatch = c.titulo.toLowerCase().includes(searchTerm.toLowerCase());
+        return genreMatch && searchMatch;
     });
+    
 
-    const handleModifyClick = (comic) => {
-        setSelectedComic(comic);
+    const manejoEditarComic = async (comicEdit) => {
+        const { value: formValues } = await MySwal.fire({
+            title: 'Modificar Comic',
+            html: `
+                <div class="form-container">
+                    <label for="titulo" class="custom-label">Titulo:</label>
+                    <input id="titulo" class="swal2-input custom-input" placeholder="Título" value="${comicEdit.titulo}">
+                    
+                    <label for="autor" class="custom-label">Autor:</label>
+                    <input id="autor" class="swal2-input custom-input" placeholder="Autor" value="${comicEdit.autor}">
+                    
+                    <label for="genero" class="custom-label">Genero:</label>
+                    <input id="genero" class="swal2-input custom-input" placeholder="Genero" value="${comicEdit.genero}">
+                    
+                    <label for="precio" class="custom-label">Precio:</label>
+                    <input id="precio" class="swal2-input custom-input" placeholder="Precio" value="${comicEdit.precio}">
+                    
+                    <label for="stock" class="custom-label">Stock:</label>
+                    <input id="stock" class="swal2-input custom-input" placeholder="Stock" value="${comicEdit.stock}">
+                    
+                    <label for="descripcion" class="custom-label">Descripcion:</label>
+                    <textarea id="descripcion" class="swal2-textarea custom-textarea" placeholder="Descripción">${comicEdit.descripcion}</textarea>
+                </div>
+            `,
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    titulo: document.getElementById('titulo').value,
+                    autor: document.getElementById('autor').value,
+                    genero: document.getElementById('genero').value,
+                    precio: document.getElementById('precio').value,
+                    stock: document.getElementById('stock').value,
+                    descripcion: document.getElementById('descripcion').value
+                }
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'custom-popup',
+                title: 'custom-title',
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            }
+        });
+        
+        
+
+        if (formValues) {
+            try {
+                const updatedComic = { ...comicEdit, ...formValues };
+                console.log("Datos a actualizar:", updatedComic);
+                await axios.put(`http://localhost:8080/api/comics/modificar/${comicEdit.id}`, updatedComic);
+                setComic(comic.map((c) => (c.id === comicEdit.id ? updatedComic : c)));
+                MySwal.fire({
+                    title: 'Comic modificado exitosamente',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                });
+            } catch (error) {
+                console.error('Error al modificar el cómic:', error);
+            }
+        }
     };
 
-    const handleSaveChanges = (updatedComic) => {
-        setComic(comic.map(comic => comic.id === updatedComic.id ? updatedComic : comic));
-        setSelectedComic(null);
-    };
-
-    const handleCancel = () => {
-        setSelectedComic(null);
-    };
+   
 
     return (
         <>
@@ -170,7 +216,7 @@ const MainPage = () => {
                 </div>
             )}
 
-            <Navbar setSearchTerm={setSearchTerm}/>
+            <Navbar setSearchTerm={setSearchTerm} setSelectedGenre={setSelectedGenre}/>
             
             <div className="MainPage">
 
@@ -186,20 +232,12 @@ const MainPage = () => {
                         rating={comic.rating} 
                         reviews={comic.reviews} 
                         stock={comic.stock}
-                        onDelete={() => manejoBorrarComic(comic.id)} // Función de eliminación
-                        isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
-                        onModify={() => handleModifyClick(comic)} // Función de modificación
+                        onDelete={() => manejoBorrarComic(comic.id)}
+                        onEdit={() => manejoEditarComic(comic)} // Función de eliminación
+                            isAdmin={rol === "ADMIN"} // Solo muestra el botón si es administrador
                         />
                          ))}
                 </div>
-
-                {selectedComic && (
-                <ModifyComicPage
-                    comic={selectedComic}
-                    onSave={handleSaveChanges}
-                    onCancel={handleCancel}
-                />
-            )}
             </div>
         </>
     );

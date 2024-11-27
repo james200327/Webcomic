@@ -1,61 +1,53 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Estilos/ProductCard.css';
-import InfinityPoints from '../Imagenes/InfinityPoints.jpg';
+import InfinityPoints from '../Imagenes/InfinityPoints.png';
 import InfinityComics from '../Imagenes/logo.png';
-export function ProductCard({ comic, image, onDelete, isAdmin, onModify}) {
-    const navigate = useNavigate();
+export function ProductCard({ comic, image, onDelete, isAdmin, onEdit }) {
+  const navigate = useNavigate();
 
-
-    const handleClick = () => {
-        // Navega a ProductDetailPage pasando el ID del cómic en la URL
-        navigate(`/product/${comic.id}`);
-    };
-
-    const handleDeleteClick = (e) => {
-        e.stopPropagation(); // Evita la navegación al hacer clic en "Eliminar"
-        onDelete(); // Llama a la función de eliminación
-    };
-
-    const handleEditClick = (e) => {
-      e.stopPropagation();
-      onModify(); // Abre el formulario de edición
+  const handleClick = () => {
+    // Navega a ProductDetailPage pasando el ID del cómic en la URL
+    navigate(`/product/${comic.id}`);
   };
 
+  const handleDeleteClick = (e) => {
+    e.stopPropagation(); // Evita la navegación al hacer clic en "Eliminar"
+    onDelete(); // Llama a la función de eliminación
+  };
 
-  const handleSaveClick = (e) => {
+  const handleEditClick = (e) => {
     e.stopPropagation();
-    onModify(updatedComic); // Llama a la función onModify pasando los datos actualizados
-    setIsEditing(false); // Cierra el formulario de edición
-}; 
-
-      return(
+    onEdit();
+  };
+  return (
     <div className="product-card" onClick={handleClick}>
       <img src={image} className="product-image" />
       <h3 className="product-name">{comic.titulo}</h3>
       <div className='div-product-price'>
-      <p className="product-price">{comic.precio}</p>
-      <img className='product-infinitypoints-img' src={InfinityPoints} alt="InfinityPoints" />
+        <p className="product-price">{comic.precio}</p>
+        <img className='product-infinitypoints-img' src={InfinityPoints} alt="InfinityPoints" />
       </div>
-    
+
       <div className="product-rating">
         <span>{comic.rating}/5 </span>
         <span className='estrellas'>★</span>
         <span>{comic.reviews} opiniones</span>
       </div>
       <div className='div-delivery'>
-      <img src={InfinityComics} alt="Infinity Comics" className='img-delivery' />
-      <p className="product-delivery">Quedan {comic.stock} unidades</p>
-      </div> 
+        <img src={InfinityComics} alt="Infinity Comics" className='img-delivery' />
+        <p className="product-delivery">Quedan {comic.stock} unidades</p>
+      </div>
       {isAdmin && (
-        <div className='adminn-buttons'>
-                <button className='product-card-delete' onClick={handleDeleteClick}>Eliminar</button>
-                <button className='product-card-modify' onClick={handleEditClick}>Modificar</button>
-          
-        </div> 
-            )} 
-    </div> 
+        <>
+          <button className='product-card-delete' onClick={handleDeleteClick}>Eliminar</button>
+          <button className='product-card-edit' onClick={handleEditClick}>Modificar</button>
+        </>
+      )}
+
+    </div>
   );
 }
+
 
 

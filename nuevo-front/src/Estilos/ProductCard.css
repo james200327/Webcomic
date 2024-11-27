@@ -1,5 +1,5 @@
 .product-card {
-  border: 0.063rem solid #ddd; /* 1px -> 0.063rem */
+  border: 0.063rem solid #e0474c; /* 1px -> 0.063rem */
   border-radius: 0.5rem; /* 8px -> 0.5rem */
   padding: 1.5rem; /* 10px -> 1.5rem (ajustado a 1.5rem para coherencia) */
   text-align: center;
@@ -9,6 +9,7 @@
   max-height: 200vh;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
+  background-color: #fff;
 }
 
 .product-card:hover {
@@ -72,4 +73,30 @@
 .div-delivery {
   display: flex;
   align-items: center;
+}
+
+.product-card-delete{
+    background-color: orange;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border-color: #ddd;
+}
+
+.product-card-delete{
+    background-color: #e0474c;
+}
+
+.product-card-edit{
+  background-color: orange;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border-color: #ddd;
+}
+
+.product-card-edit{
+  background-color: #e0474c;
 }

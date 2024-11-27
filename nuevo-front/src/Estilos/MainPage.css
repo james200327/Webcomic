@@ -32,6 +32,12 @@ flex-direction: column;
     margin-top: 20px;
 }
 
+.div-info-textarea{
+    border-radius: 10px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+
 .admin-div-info h2{
     text-align: center;
     color: orange;
@@ -40,7 +46,7 @@ flex-direction: column;
 
 .div-info-input{
     margin: 10px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     text-align: center;
     border-radius: 5px;
     border-color: #eee;
@@ -83,9 +89,10 @@ flex-direction: column;
     box-sizing: border-box;
     padding: 0 15px;
     text-align: center;
-    background-color: #fff;
+    background-color: #686868;
     color: #FF6000;
     padding: 1.25rem; /* 20px -> 1.25rem */
+
 }
 
 .div-products {
@@ -105,3 +112,114 @@ flex-direction: column;
     -webkit-background-clip: text;
     font-size: 1.5rem;
 }
+
+
+/* Contenedor del formulario */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre los campos */
+}
+
+/* Estilo para los labels */
+.custom-label {
+    text-align: left; /* Alineación a la izquierda */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color del texto */
+    margin-bottom: 5px; /* Espacio entre el label y el input */
+}
+
+/* Estilo para los inputs */
+.custom-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Estilo para el textarea */
+.custom-textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+    resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* Estilo para el popup */
+.custom-popup {
+    background-color: #fafafa;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* Estilo para el título */
+.custom-title {
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.cart {
+  width: 400px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.item-image {
+  width: 60px;
+  height: 60px;
+  margin-right: 16px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-quantity button {
+  margin: 0 4px;
+}
+
+.item-options {
+  margin-top: 8px;
+}
+
+.empty-cart {
+  background: #f00;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botón confirmar */
+.custom-confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Botón cancelar */
+.custom-cancel-button {
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+

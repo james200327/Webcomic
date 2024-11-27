@@ -9,7 +9,7 @@ export default function PointsPage() {
     return (
         <>
          <Navbar/>
-        <div className="App">
+        <div className="PointsPage">
             <header>
                 <h1>Seleccionar Método de Compra</h1>
                 <PaymentMethods/>
