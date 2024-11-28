@@ -37,6 +37,12 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
     redirect("/UserProfile");
   }
 
+  const logOut = () =>{
+    localStorage.removeItem("userId");
+    localStorage.removeItem('role');
+    redirect("/")
+  };
+
   const [puntos, setPuntos] = useState(0);
 
     const userId = localStorage.getItem("userId"); // Asegúrate de que el ID del usuario esté guardado
@@ -170,6 +176,9 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
           <li> Comics</li>
           <li> Manga</li>
           <li onClick={irInicio}> Inicio</li>
+          <button onClick={logOut}>
+            Cerrar Sesión
+          </button>
         </ul>
       </div>
 
