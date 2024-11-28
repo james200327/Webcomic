@@ -170,11 +170,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
           <li><Link to="/manga" onClick={toggleMenu}>Manga</Link></li>
         </ul> */}
          <ul className="category-list">
-          <li> Campañas y ofertas</li>
-          <li> Ultimas novedades</li>
           <li onClick={irPagPuntos}> Puntos</li>
-          <li> Comics</li>
-          <li> Manga</li>
           <li onClick={irInicio}> Inicio</li>
           <button onClick={logOut}>
             Cerrar Sesión
