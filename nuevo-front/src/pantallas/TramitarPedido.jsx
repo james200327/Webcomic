@@ -24,7 +24,12 @@ export default function TramitarPedido() {
             console.error('Error al obtener el id pedido:', error);
         }
     }
-    
+
+    const redirect = useNavigate();
+
+  const Inicio = () => {
+    redirect("/inicio");
+  } 
     
     const fetchCarrito = async () => {
       
@@ -86,9 +91,9 @@ export default function TramitarPedido() {
   <h1>Confirmar Pedido</h1>
   <div className="checkout-container">
     {/* Formulario que ocupa el 70% */}
-    <div className="checkout-form">
+    <div className="checkout-form-div">
       <h2>Datos de Envío</h2>
-      <form>
+      <form className='checkout-form'> 
         <input
           type="text"
           name="nombre"
@@ -105,8 +110,22 @@ export default function TramitarPedido() {
         />
         <input
           type="text"
-          name="direccion"
-          placeholder="Dirección"
+          name="Ciudad"
+          placeholder="Ciudad"
+          value={form.direccion}
+          onChange={handleFormChange}
+        />
+        <input
+          type="text"
+          name="calle"
+          placeholder="Calle"
+          value={form.direccion}
+          onChange={handleFormChange}
+        />
+        <input
+          type="text"
+          name="codigo_Postal"
+          placeholder="Codigo postal"
           value={form.direccion}
           onChange={handleFormChange}
         />
@@ -117,6 +136,7 @@ export default function TramitarPedido() {
           Confirmar Pedido
         </button>
       </div>
+      <button onClick={Inicio} className='menu-button'>Volver al menu</button>
     </div>
 
     {/* Productos que ocupan el 30% */}

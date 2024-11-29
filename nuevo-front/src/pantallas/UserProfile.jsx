@@ -187,9 +187,12 @@ const UserProfile = () => {
                                 <div className="pedido-comics">
                                     {pedido.items.map((item) =>(
                                         <><img src={`http://localhost:8080${item.comic.imagenUrl}`} alt={item.comic.titulo} />
+                                        <div className="datos-pedidos-realizados">
                                         <p><strong>{item.comic.titulo}</strong></p>
                                         <p>Cantidad: {item.cantidad}</p>
-                                        <p>Subtotal: {item.cantidad * item.comic.precio} puntos</p></>
+                                        <p>Subtotal: {item.cantidad * item.comic.precio} puntos</p>
+                                        </div>
+                                        </>
                                     ))}
                                 </div>
                             </div>

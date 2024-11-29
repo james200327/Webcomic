@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import '../Estilos/ProductDetailPage.css';
 import { Navbar } from '../componentes/Navbar';
 import InfinityPoints from '../Imagenes/InfinityPoints.png';
@@ -35,7 +36,15 @@ export default function ProductDetailPage({}) {
             null,
             { params: { cantidad: 1 } } // Añadir 1 unidad al carrito
         );
-        alert("Producto añadido al carrito.");
+        Swal.fire({
+            title: "Producto añadido",
+            text: "El producto se ha añadido correctamente al carrito.",
+            icon: "success",
+            confirmButtonText: "Aceptar",
+        }).then(() => {
+            // Recargar la página solo después de cerrar el SweetAlert
+            window.location.reload();
+        });
     } catch (error) {
         console.error("Error al añadir producto al carrito:", error);
         alert("Hubo un error al añadir el producto al carrito.");
@@ -48,7 +57,7 @@ export default function ProductDetailPage({}) {
             <Navbar/>
             <div className="product-detail">
                 <nav className="breadcrumb">
-                    <span onClick={goMainPage}>Home</span> {'>'} Cómics {'>'} {product.titulo}
+                    <span onClick={goMainPage}>Home</span> {'>'} {product.titulo}
                 </nav>
                 <div className="product-main">
                     <div className="product-images">

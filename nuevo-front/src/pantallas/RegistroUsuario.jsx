@@ -5,7 +5,13 @@ import axios from 'axios';
 import "../Estilos/RegistroUsuario.css"
 import logo from "../Imagenes/logo.png"
 
+
+
 const RegistroUsuario = () => {
+
+
+
+
 
     const [data, actualizarEstado] = useState({
         nombre: "",
@@ -26,6 +32,10 @@ const RegistroUsuario = () => {
     }
 
     const redirect = useNavigate();
+
+    const InicioSesion = () => {
+        redirect("/");
+      }
 
     const manejarRegistro = async (e) => {
         e.preventDefault();
@@ -108,6 +118,7 @@ const RegistroUsuario = () => {
                     <label htmlFor="CT Code" className="fm-label">Codigo Postal</label>
                     <input type="text" name="codigoPostal" placeholder="Codigo Postal" className="fm-input" value={data.codigoPostal} onChange={manejarCambio} required/>
                     <button type="submit" className="fm-button">Registrarse</button>
+                    <button type="submit" onClick={InicioSesion} className="fm-button">Volver</button>
                 </form>
             </div>
 

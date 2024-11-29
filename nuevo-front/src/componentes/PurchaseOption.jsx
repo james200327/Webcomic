@@ -60,8 +60,10 @@ const PurchaseOption = ({ points, price, icon }) => {
                     text: response.data,
                     icon: 'success',
                     confirmButtonText: 'Continuar',
+                }).then(() => {
+                    // Recargar la página solo después de cerrar el SweetAlert
+                    window.location.reload();
                 });
-                window.location.reload();
 
                 // Opcional: recargar puntos del usuario desde el backend
             } catch (error) {

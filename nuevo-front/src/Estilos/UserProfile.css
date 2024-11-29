@@ -100,7 +100,14 @@ p{
     border: 1px solid #ddd;
   }
   
-  .pedido-comics p {
+  .datos-pedidos-realizados{
+    display: flex;
+    align-items: self-start;
+    flex-direction: column;
+  }
+
+
+  .datos-pedidos-realizados p {
     margin: 0; /* Sin margen extra */
     font-size: 0.9rem;
     color: #444;

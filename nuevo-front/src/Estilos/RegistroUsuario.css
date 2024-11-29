@@ -93,12 +93,13 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 15px;
   }
   
   .fm-button:hover {
     background-color: #e0474c;
   }
-
+  
   .error-message {
     color: red;
     font-weight: bold;
