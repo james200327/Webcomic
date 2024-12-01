@@ -307,3 +307,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+#errorCarrito{
+  color: #f00;
+}

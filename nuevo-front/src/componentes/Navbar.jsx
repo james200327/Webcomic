@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function Navbar({setSearchTerm, setSelectedGenre}) {
   const [carrito, setCarrito] = useState([]);
+  const [errorCarrito, setErrorCarrito] = useState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
@@ -109,7 +110,13 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
       }, [userId]);
 
     const handleCheckout = () => {
-      redirect('/tramitarPedido');
+      if(carrito.length === 0){
+        setErrorCarrito('No hay productos en el carrito para tramitar')
+      }else {
+        setErrorCarrito('')
+        redirect('/tramitarPedido');
+      }
+     
     };
 
   return (
@@ -215,6 +222,7 @@ export function Navbar({setSearchTerm, setSelectedGenre}) {
         <div className="cart-total">
           <h3>Total: {total} puntos</h3>
         </div>
+        <span id='errorCarrito'>{errorCarrito}</span>
         <button className="checkout-btn" onClick={handleCheckout}>
           Tramitar Pedido
         </button>
