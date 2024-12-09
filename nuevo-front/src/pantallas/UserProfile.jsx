@@ -17,7 +17,7 @@ const UserProfile = () => {
     });
 
     // Estado para saber si estamos editando o no
-    const [isEditing, setIsEditing] = useState(false);
+
     const [comics, setComics] = useState([]);
 
     // Llama al backend para obtener los datos del usuario cuando se monta el componente
@@ -64,82 +64,10 @@ const UserProfile = () => {
         }));
     };
 
-    // Enviar los datos modificados al backend
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put('http://localhost:8080/api/usuarios/perfil', userData);
-            setIsEditing(false); // Termina la edición después de enviar los datos
-            alert('Datos actualizados correctamente');
-        } catch (error) {
-            console.error('Error al actualizar los datos del usuario:', error);
-        }
-    };
 
     return (
         <div className="div-user">
             <h2>Perfil de Usuario</h2>
-
-            {isEditing ? (
-                <form onSubmit={handleSubmit} className="form-edit">
-                    <div className="div-info">
-                        <strong>Nombre:</strong>
-                        <input
-                            type="text"
-                            name="nombre"
-                            value={userData.username}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="div-info">
-                        <strong>Email:</strong>
-                        <input
-                            type="email"
-                            name="email"
-                            value={userData.email}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="div-info">
-                        <strong>Contraseña:</strong>
-                        <input
-                            type="password"
-                            name="contraseña"
-                            value={userData.contraseña}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="div-info">
-                        <strong>Calle:</strong>
-                        <input
-                            type="text"
-                            name="calle"
-                            value={userData.calle}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="div-info">
-                        <strong>Ciudad:</strong>
-                        <input
-                            type="text"
-                            name="ciudad"
-                            value={userData.ciudad}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="div-info">
-                        <strong>Código Postal:</strong>
-                        <input
-                            type="text"
-                            name="codigoPostal"
-                            value={userData.codigoPostal}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <button type="submit" className="button-user">Guardar Cambios</button>
-                    <button type="button" className="button-user" onClick={() => setIsEditing(false)}>Cancelar</button>
-                </form>
-            ) : (
                 <div className="main-div-info">
                     <div className="div-info">
                         <strong>Nombre:</strong>
@@ -166,11 +94,11 @@ const UserProfile = () => {
                         <p>{userData.codigoPostal}</p>
                     </div>
                 </div>
-            )}
+    
 
             <div className="div-buttons">
                 <button className="button-user" onClick={() => navigate('/inicio')}>Volver al Menú Principal</button>
-                <button className="button-user" onClick={() => setIsEditing(true)}>Modificar Datos</button>
+                
             </div>
 
 

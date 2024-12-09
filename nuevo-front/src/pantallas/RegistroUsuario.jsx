@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../Estilos/RegistroUsuario.css"
 import logo from "../Imagenes/logo.png"
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
-
+const MySwal = withReactContent(Swal);
 
 const RegistroUsuario = () => {
 
-
+   
 
 
 
@@ -57,8 +59,14 @@ const RegistroUsuario = () => {
                     codigoPostal: data.codigoPostal
                 }
             });
-            alert("Usuario registrado con éxito");
-            redirect("/");
+            MySwal.fire({
+                title: 'Usuario registrado correctamente',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+              }).then(() =>{
+                redirect("/");
+              })
+                
 
 
         } catch (error) {

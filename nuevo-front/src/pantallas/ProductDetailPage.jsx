@@ -47,7 +47,11 @@ export default function ProductDetailPage({}) {
         });
     } catch (error) {
         console.error("Error al añadir producto al carrito:", error);
-        alert("Hubo un error al añadir el producto al carrito.");
+        Swal.fire({
+            title: 'Hubo un error al añadir el producto al carrito',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+          });
     }
 };
     
