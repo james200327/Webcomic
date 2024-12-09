@@ -87,6 +87,7 @@ public class PedidoService {
             comic.setStock(nuevoStock);
             comicRepository.save(comic);
         }
+        
 
         // Actualiza el estado del pedido
         pedido.setEstado("CONFIRMADO");

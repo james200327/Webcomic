@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
 
@@ -41,12 +42,13 @@ public class ComicController {
 			@RequestParam("precio") Double precio,
 			@RequestParam("stock") Integer stock,
 			@RequestParam("imagen") MultipartFile imagen,
-			@RequestParam("descripcion") String descripcion){
-				
+			@RequestParam("descripcion") String descripcion) {
+
 		try {
 			String nombreArchivo = System.currentTimeMillis() + "_" + imagen.getOriginalFilename();
-			Path rutaArchivo = Paths.get("src/main/resources/static/imagenes/" + nombreArchivo);
-			Files.copy(imagen.getInputStream(), rutaArchivo);
+			Path rutaArchivo = Paths.get("uploads/imagenes/" + nombreArchivo);
+			Files.createDirectories(rutaArchivo.getParent()); // Crear directorios si no existen
+			Files.copy(imagen.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
 
 			// Crear y guardar el objeto Comic
 			Comic nuevoComic = new Comic();
@@ -55,8 +57,9 @@ public class ComicController {
 			nuevoComic.setGenero(genero);
 			nuevoComic.setPrecio(precio);
 			nuevoComic.setStock(stock);
+			nuevoComic.setActivo(true);
 			// Guardar la URL relativa de la imagen en la base de datos
-			
+
 			nuevoComic.setImagenUrl("/imagenes/" + nombreArchivo);
 			nuevoComic.setDescripcion(descripcion);
 			comicService.agregarComic(nuevoComic);

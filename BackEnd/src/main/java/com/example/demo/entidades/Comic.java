@@ -22,6 +22,7 @@ public class Comic {
 	private double precio;
 	private int stock;
 	private String imagenUrl;
+	private boolean activo;
 	@Column(length = 1000)
 	private String descripcion;
 	
@@ -33,7 +34,7 @@ public class Comic {
 	}
 
 	public Comic(Long id, String titulo, String autor, String genero, double precio, int stock,
-			String imagenUrl, String descripcion) {
+			String imagenUrl, boolean activo,String descripcion) {
 		
 		this.id = id;
 		this.titulo = titulo;
@@ -42,6 +43,7 @@ public class Comic {
 		this.precio = precio;
 		this.stock = stock;
 		this.imagenUrl = imagenUrl;
+		this.activo = activo;
 		this.descripcion = descripcion;
 		//this.fecha_publicacion = fecha_publicacion;
 	}
@@ -52,6 +54,14 @@ public class Comic {
 
 	public void setDescripcion(String descripcion){
 		this.descripcion = descripcion;
+	}
+
+	public boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	public Long getId() {

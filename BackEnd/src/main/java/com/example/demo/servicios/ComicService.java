@@ -59,16 +59,15 @@ public class ComicService {
 	
 	public void eliminarComic (Long id) {
 		
-		if(!comicRepository.existsById(id)) {
-			throw new EntityNotFoundException("Comic no encontrado");
-		}
-		
-		comicRepository.deleteById(id);
+		Comic comic = comicRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Comic no encontrado"));
+    comic.setActivo(false);
+    comicRepository.save(comic);
 	}
 	
 	public List<Comic> obtenerTodosLosComics(){
 		
-		return comicRepository.findAll();
+		return comicRepository.findAllActiveComics();
 	}
 	
 	public Comic obtenerComicPorId(Long id) {
